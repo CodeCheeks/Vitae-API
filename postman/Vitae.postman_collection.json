@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "6bc1e36f-978e-43db-b5a6-e9f0baa0e2f5",
+		"name": "Vitae",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add user Diego",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"diego@mail.com\",\n    \"password\": \"12345678\",\n    \"name\": \"Diego Cerratos Bravo\",\n    \"address\": \"Calle sisuka 21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/users",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Add user Alicia",
+			"item": [
+				{
+					"name": "Create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"alicia@mail.com\",\n    \"password\": \"12345678\",\n    \"name\": \"Alicia Parra Serrano\",\n    \"address\": \"Calle de Piedra 26\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/users",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
