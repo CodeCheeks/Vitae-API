@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const mongoose = require('mongoose');
 const createError = require('http-errors');
 const logger = require('morgan');
@@ -49,5 +48,6 @@ app.use((error, req, res, next) => {
 const port = Number(process.env.PORT || 3001);
 
 app.listen(port, () => {
-  console.log(`Ready! Listen on port ${port}`);
+  console.log(`Ready! Listen on port ${port}`)
+
 })
