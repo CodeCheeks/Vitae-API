@@ -59,7 +59,7 @@
 								"{{BASE_API_URL}}"
 							],
 							"path": [
-								"users"
+								"login"
 							]
 						}
 					},
