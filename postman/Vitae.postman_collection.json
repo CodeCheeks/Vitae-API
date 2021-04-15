@@ -37,16 +37,16 @@
 			]
 		},
 		{
-			"name": "Add user Alicia",
+			"name": "Login Diego",
 			"item": [
 				{
-					"name": "Create user",
+					"name": "Login user",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"alicia@mail.com\",\n    \"password\": \"12345678\",\n    \"name\": \"Alicia Parra Serrano\",\n    \"address\": \"Calle de Piedra 26\"\n}",
+							"raw": "{\n    \"email\": \"diego@mail.com\",\n    \"password\": \"12345678\",\n }",
 							"options": {
 								"raw": {
 									"language": "json"

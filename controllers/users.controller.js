@@ -23,16 +23,17 @@ module.exports.list = (req, res, next) => {
 }
 
 module.exports.get = (req, res, next) => {
-  User.findById(req.params.id)
+  User.findById(req.currentUser)
     .then(user => {
       if (!user) {
-        next(createError(404, 'User not found'))
+        next(createError(404))
       } else {
         res.json(user)
       }
     })
-    .catch(next)
 }
+
+
 
 module.exports.authenticate = (req, res, next) => {
   const { email, password } = req.body
