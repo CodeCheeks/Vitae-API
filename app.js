@@ -1,9 +1,11 @@
 require('dotenv').config();
+
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken')
 const createError = require('http-errors');
 const logger = require('morgan');
 const express = require('express');
-const jwt = require('jsonwebtoken')
+const cors = require('cors')
 
 require('./config/db.config')
 
@@ -13,6 +15,7 @@ const app = express();
 
 app.use(express.json());
 app.use(logger('dev'));
+app.use(cors())
 
 /* Routes */
 
@@ -42,14 +45,12 @@ app.use((error, req, res, next) => {
     Object.keys(error.errors)
       .reduce((errors, key) => ({ ...errors, [key]: error.errors[key].message || error.errors[key] }), {}) :
     undefined;
-  
+
   res.status(error.status).json(data)
 });
-
 
 const port = Number(process.env.PORT || 3001);
 
 app.listen(port, () => {
-  console.log(`Ready! Listen on port ${port}`)
-
+  console.log(`Ready! Listen on port ${port}`);
 })
