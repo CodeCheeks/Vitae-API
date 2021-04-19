@@ -54,13 +54,13 @@ const elderSchema = mongoose.Schema(
 
 elderSchema.virtual('reports', {
 	ref: 'Report',
-	localField: 'id',
+	localField: '_id',
 	foreignField: 'elder'
 });
 
 elderSchema.virtual('activities', {
 	ref: 'Activity',
-	localField: 'id',
+	localField: '_id',
 	foreignField: 'elder'
 });
 
