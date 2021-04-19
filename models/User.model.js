@@ -2,31 +2,46 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/
+const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
 const SALT_WORK_FACTOR = 10;
 
 const userSchema = mongoose.Schema(
   {
-    email: {
-      unique: true,
+    firstname: {
       type: String,
-      required: 'Email is required',
-      match: [EMAIL_PATTERN, 'Email is not valid']
+      required: [true, 'Firstname is required.'],
     },
-    password: {
+    lastname: {
       type: String,
-      required: 'Password is required',
-      minLength: [8, 'Password must have 8 characters or more']
-      //TODO match password pattern
+      required: [true, 'Lastname is required.'],
     },
-    name: {
+    phonenumber: {
       type: String,
-      required: 'Name is required'
+      trim: true,
+      default: 'Add a phone number'
     },
     address: {
       type: String,
       required: 'Address is required'
-    }
+    },
+    email: {
+      type: String,
+      required: [true, 'Email is required.'],
+      lowercase: true,
+      trim: true,
+      match: [EMAIL_PATTERN, 'Email invalid'],
+      unique: true,
+    },
+    password: {
+      type: String,
+      //match: [PASSWORD_PATTERN, 'Your password must contain at least 1 number, 1 uppercase, 1 lowercase and 8 characters'],
+      required: [true, 'Password is required.'],
+    },
+    elder: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Elder",
+  }
   },
   {
     timestamps: true,
