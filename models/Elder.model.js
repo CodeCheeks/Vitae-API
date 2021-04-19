@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const { Schema, model } = require('mongoose');
 
 const elderSchema = mongoose.Schema(
   {
@@ -35,7 +36,8 @@ const elderSchema = mongoose.Schema(
     user: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
-    }
+    },
+    therapies: [{ type: Schema.Types.ObjectId, ref: 'Activity' }]
     
   },
   {
