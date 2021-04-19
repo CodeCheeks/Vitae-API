@@ -2,15 +2,15 @@ const mongoose = require('mongoose')
 
 const elderSchema = mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: 'Name is required'
+    firstname: {
+        type: String,
+        required: [true, 'Firstname is required.'],
     },
     lastname: {
-      type: String,
-      required: 'Lastname is required'
+        type: String,
+        required: [true, 'Lastname is required.'],
     },
-    genre: {
+    gender: {
       type: String,
       enum: ['male','female'],
       required: 'Lastname is required'
@@ -32,7 +32,10 @@ const elderSchema = mongoose.Schema(
        enum: ['basal','diabetic','glutenfree','lowsalt'],
        default: 'basal'
     },
-    user: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    user: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "User",
+    }
     
   },
   {
