@@ -1,5 +1,6 @@
 const createError = require('http-errors')
 const User = require('../models/User.model')
+const Elder = require('../models/Elder.model')
 const jwt = require('jsonwebtoken')
 
 module.exports.create = (req, res, next) => {
@@ -18,12 +19,14 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   User.find()
+
     .then(users => res.json(users))
     .catch(next)
 }
 
 module.exports.get = (req, res, next) => {
   User.findById(req.currentUser)
+  .populate("elder")
     .then(user => {
       if (!user) {
         next(createError(404))

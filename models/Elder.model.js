@@ -32,7 +32,7 @@ const elderSchema = mongoose.Schema(
        enum: ['basal','diabetic','glutenfree','lowsalt'],
        default: 'basal'
     },
-    user: {
+    relative: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
     }

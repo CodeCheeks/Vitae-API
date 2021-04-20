@@ -16,17 +16,17 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
       phonenumber: faker.phone.phoneNumber(),
-      email: faker.internet.email(),
+      email: `${occupation[i]}@vitae.com`,
       password: '12345678',
       occupation: occupation[i]
     })
     .then(p => {
-      for(let i = 0; i<50; i++){
+      for(let i = 0; i<10; i++){
         User.create({
           firstname: faker.name.firstName(),
           lastname: faker.name.lastName(),
           phonenumber: faker.phone.phoneNumber(),
-          address:faker.address.direction(),
+          address:faker.address.streetAddress(),
           email: faker.internet.email(),
           password: '12345678',
         })
@@ -41,16 +41,20 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).
               diet: dietTypes[Math.floor(Math.random() * dietTypes.length)],
               user: u.id
             })
-              .then((e) => {
-                User.findByIdAndUpdate(u.id,{elder: e.id})
-                .then(() => {
-                  console.log(`Created ${e.firstname} con el familiar ${u.firstname}`)
-                })
+            .then((e) => {
+              User.findByIdAndUpdate(u.id,{elder: e.id})
+              .then(() => {
+                Elder.findByIdAndUpdate(e.id,{relative: u.id})
+                .then(() => console.log(`Created ${e.firstname} con el familiar ${u.firstname}`))
+                .catch((e) => console.log(e));
+              })
+              .catch((e) => console.log(e));
             })
+            
           .catch((e) => console.log(e));
         })
         .catch(e => console.log(e))
-        }
+      }
     })
     .catch(e => console.log(e))
   }
