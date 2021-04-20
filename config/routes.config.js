@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users.controller')
 const professionalsController = require('../controllers/professionals.controller')
+const eldersController = require('../controllers/elders.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 
 //RELATIVES SECTION
@@ -17,10 +18,12 @@ router.post('/login', usersController.authenticate)
 
 // router.delete('/users/:id', usersController.delete)
 // router.put('/users/:id', usersController.update)
+//ELDERS SECTION
+router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
 
 //PROFESSIONALS SECTION
 
-//router.post('/professionals', authMiddleware.isAuthenticated, professionalsController.create)
+router.post('/professionals', authMiddleware.isAuthenticated, professionalsController.create)
 router.get('/professionals', authMiddleware.isAuthenticated, professionalsController.list) 
 router.get('/professionals/me', authMiddleware.isAuthenticated, professionalsController.get)
 
