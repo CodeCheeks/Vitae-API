@@ -3,19 +3,19 @@ const Professional = require('../models/Professional.model')
 
 const jwt = require('jsonwebtoken')
 
-/* module.exports.create = (req, res, next) => {
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (user) {
+ module.exports.create = (req, res, next) => {
+    Professional.findOne({ email: req.body.email })
+    .then(prof => {
+      if (prof) {
         next(createError(400, { errors: { email: 'This email is already in use' } }))
       } else {
-        // User creation
-        return User.create(req.body)
-          .then(user => res.status(201).json(user))
+        // prof creation
+        return prof.create(req.body)
+          .then(prof => res.status(201).json(prof))
       }
     })
     .catch(next)
-} */
+} 
 
 module.exports.list = (req, res, next) => {
   Professional.find()
