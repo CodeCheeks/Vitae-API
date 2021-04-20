@@ -66,6 +66,38 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Login Professional",
+			"item": [
+				{
+					"name": "Login professional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"physiotherapist@vitae.com\",\n    \"password\": \"12345678\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/loginProfessionals",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"loginProfessionals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
+
 	]
 }
