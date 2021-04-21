@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "Add user Diego",
+			"name": "Users",
 			"item": [
 				{
 					"name": "Create user",
@@ -15,7 +15,59 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"diego@mail.com\",\n    \"password\": \"12345678\",\n    \"name\": \"Diego Cerratos Bravo\",\n    \"address\": \"Calle sisuka 21\"\n}",
+							"raw": "{\n    \"email\": \"sisuka@gmail.com\",\n    \"password\": \"12345678\",\n    \"firstname\": \"Sisuka\",\n  \"lastname\": \"Quinta Cornelia\",\n   \"address\": \"Calle Maravillas 21\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/users",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"sisuka@gmail.com\",\n    \"password\": \"12345678\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/users",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -34,41 +86,12 @@
 					},
 					"response": []
 				}
+
 			]
+
 		},
 		{
-			"name": "Login Diego",
-			"item": [
-				{
-					"name": "Login user",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"email\": \"diego@mail.com\",\n    \"password\": \"12345678\"\n }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_API_URL}}/users",
-							"host": [
-								"{{BASE_API_URL}}"
-							],
-							"path": [
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Login Professional",
+			"name": "Professionals",
 			"item": [
 				{
 					"name": "Login professional",
@@ -91,6 +114,68 @@
 							],
 							"path": [
 								"loginProfessionals"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Elders",
+			"item": [
+				{
+					"name": "List elders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/elders",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"elders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidates",
+			"item": [
+				{
+					"name": "Add candidature",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\": \"sisuka@gmail.com\",\n   \"firstName\": \"Sisuka\",\n   \"lastName\": \"Quinta Cornelia\",\n   \"phoneNumber\": \"654321450\",\n   \"street\": \"Calle Maravillas 21\",\n   \"city\": \"Madrid\",\n   \"zip\": \"28068\",\n   \"vacancy\": \"Transport\",\n   \"comment\": \"Tengo dudas sobre el sueldo\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/employ",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"employ"
 							]
 						}
 					},
