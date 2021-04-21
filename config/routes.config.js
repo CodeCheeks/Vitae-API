@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const usersController = require('../controllers/users.controller')
 const professionalsController = require('../controllers/professionals.controller')
+const candidateController = require('../controllers/candidate.controller')
 const eldersController = require('../controllers/elders.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 
@@ -26,6 +27,8 @@ router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
 router.post('/professionals', authMiddleware.isAuthenticated, professionalsController.create)
 router.get('/professionals', authMiddleware.isAuthenticated, professionalsController.list) 
 router.get('/professionals/me', authMiddleware.isAuthenticated, professionalsController.get)
+
+router.post('/employ', candidateController.addCandidate)
 
 // Auth routes
 router.post('/loginProfessionals', professionalsController.authenticate)
