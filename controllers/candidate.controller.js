@@ -3,8 +3,15 @@ const Candidate = require('../models/Candidate.model')
 
 
 
- module.exports.addCandidate = (req, res, next) => {
 
+module.exports.listCandidates = (req, res, next) => {
+  Candidate.find()
+    .then(elders => res.json(elders))
+    .catch(next)
+}
+
+
+ module.exports.addCandidate = (req, res, next) => {
    Candidate.findOne({ email: req.body.email })
     .then(info => {
       if (info) {
