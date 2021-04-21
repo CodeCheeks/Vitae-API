@@ -29,6 +29,7 @@ router.get('/professionals', authMiddleware.isAuthenticated, professionalsContro
 router.get('/professionals/me', authMiddleware.isAuthenticated, professionalsController.get)
 
 router.post('/employ', candidateController.addCandidate)
+router.get('/employ', authMiddleware.isAuthenticated, candidateController.listCandidates)
 
 // Auth routes
 router.post('/loginProfessionals', professionalsController.authenticate)

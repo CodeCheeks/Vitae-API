@@ -180,6 +180,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "List candidatures",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/employ",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"employ"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
