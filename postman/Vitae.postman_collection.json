@@ -162,7 +162,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"email\": \"sisuka@gmail.com\",\n   \"firstName\": \"Sisuka\",\n   \"lastName\": \"Quinta Cornelia\",\n   \"phoneNumber\": \"654321450\",\n   \"street\": \"Calle Maravillas 21\",\n   \"city\": \"Madrid\",\n   \"zip\": \"28068\",\n   \"vacancy\": \"Transport\",\n   \"comment\": \"Tengo dudas sobre el sueldo\"\n  }",
+							"raw": "{\n   \"email\": \"sisuka@gmail.com\",\n   \"firstName\": \"Sisuka\",\n   \"lastName\": \"Quinta Cornelia\",\n   \"phoneNumber\": \"654321450\",\n   \"street\": \"Calle Maravillas 21\",\n   \"city\": \"Madrid\",\n   \"zip\": \"28068\",\n   \"vacancy\": \"Transport\",\n   \"cv\": \"https://res.cloudinary.com/dv7hswrot/image/upload/v1619088448/Vitae/curriculums/Seeds%20CV/resume_maba5y.pdf\",\n    \"comment\": \"Tengo dudas sobre el sueldo\"\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
