@@ -43,6 +43,9 @@ const candidateSchema = mongoose.Schema(
     },
     comments: {
       type: String
+    },
+    cv: {
+      type: String
     }
   },
   {

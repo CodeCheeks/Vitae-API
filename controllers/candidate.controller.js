@@ -12,6 +12,10 @@ module.exports.listCandidates = (req, res, next) => {
 
 
  module.exports.addCandidate = (req, res, next) => {
+
+  if (req.file) {
+    req.body.cv = req.file.path;
+  }
    Candidate.findOne({ email: req.body.email })
     .then(info => {
       if (info) {
