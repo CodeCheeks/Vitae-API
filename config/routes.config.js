@@ -5,6 +5,7 @@ const professionalsController = require('../controllers/professionals.controller
 const candidateController = require('../controllers/candidate.controller')
 const eldersController = require('../controllers/elders.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
+const upload = require("./storage.config");
 
 //RELATIVES SECTION
 //user user
@@ -28,7 +29,7 @@ router.post('/professionals', authMiddleware.isAuthenticated, professionalsContr
 router.get('/professionals', authMiddleware.isAuthenticated, professionalsController.list) 
 router.get('/professionals/me', authMiddleware.isAuthenticated, professionalsController.get)
 
-router.post('/employ', candidateController.addCandidate)
+router.post('/employ', upload.single("cv"), candidateController.addCandidate)
 router.get('/employ', authMiddleware.isAuthenticated, candidateController.listCandidates)
 
 // Auth routes
