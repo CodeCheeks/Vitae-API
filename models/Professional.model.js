@@ -26,7 +26,7 @@ const professionalSchema = mongoose.Schema(
         required: [true, 'Email is required.'],
         lowercase: true,
         trim: true,
-        match: [EMAIL_PATTERN, 'Email invalid'],
+        //match: [EMAIL_PATTERN, 'Email invalid'],
         unique: true,
     },
     password: {

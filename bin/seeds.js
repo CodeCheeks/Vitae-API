@@ -7,7 +7,7 @@ const Professional = require('../models/Professional.model')
 
 require('../config/db.config')
 
-const {groupTypes, genderType, dietTypes, occupation} = require("./data")
+const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate} = require("./data")
 
 Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).then(() => {
 
@@ -15,7 +15,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).
     Professional.create({
       firstname: faker.name.firstName(),
       lastname: faker.name.lastName(),
-      phonenumber: faker.phone.phoneNumber(),
+      phonenumber: phoneGenerator(),
       email: `${occupation[i]}@vitae.com`,
       password: '12345678',
       occupation: occupation[i]
@@ -25,7 +25,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).
         User.create({
           firstname: faker.name.firstName(),
           lastname: faker.name.lastName(),
-          phonenumber: faker.phone.phoneNumber(),
+          phonenumber: phoneGenerator(),
           address:faker.address.streetAddress(),
           email: faker.internet.email(),
           password: '12345678',
@@ -35,7 +35,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).
               firstname: faker.name.firstName(),
               lastname: faker.name.lastName(),
               gender: genderType[Math.floor(Math.random() * genderType.length)],
-              dateOfBirth: faker.datatype.datetime(),
+              dateOfBirth: randomDate(new Date(1920, 0, 1), new Date(1950, 0, 1)),
               address: faker.address.streetAddress(),
               group: groupTypes[Math.floor(Math.random() * groupTypes.length)],
               diet: dietTypes[Math.floor(Math.random() * dietTypes.length)],

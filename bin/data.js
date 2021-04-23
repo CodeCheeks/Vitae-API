@@ -2,3 +2,25 @@ module.exports.groupTypes = ["green", "orange", "red"]
 module.exports.dietTypes = ["basal", "diabetic", "glutenfree","lowsalt"]
 module.exports.genderType = ["male", "female"]
 module.exports.occupation = ["nurse","physiotherapist","doctor","director","coordinator","psychologist","occupational therapist","social worker","animator"]
+
+
+module.exports.phoneGenerator = () => {
+    let phoneNum ="6"
+    for (let i=0; i<11; i++){
+        if(i===2 || i===5 || i===8) {
+            phoneNum = phoneNum + " "
+        }
+        else {
+            phoneNum = phoneNum + (Math.floor(Math.random() * 10))  
+        }
+    }
+    return phoneNum.toString()
+} 
+
+
+module.exports.randomDate = (start, end) => {
+    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
+    return 
+
+}
