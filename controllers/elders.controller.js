@@ -19,6 +19,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports.list = (req, res, next) => {
   Elder.find()
+  .populate('relative')
     .then(elders => res.json(elders))
     .catch(next)
 }
