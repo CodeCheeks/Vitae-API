@@ -36,6 +36,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(),
             Elder.create({
               firstname: faker.name.firstName(),
               lastname: faker.name.lastName(),
+              dni: faker.random.uuid(),
               gender: genderType[Math.floor(Math.random() * genderType.length)],
               dateOfBirth: randomDate(new Date(1920, 0, 1), new Date(1950, 0, 1)),
               address: faker.address.streetAddress(),
