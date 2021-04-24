@@ -1,32 +1,25 @@
 const mongoose = require('mongoose')
 const { Schema, model } = require('mongoose');
 
-const activitySchema = mongoose.Schema(
+const reportSchema = mongoose.Schema(
   {
     title: {
       type: String,
       required: [true, 'Title is required.']
     },
-    schedule: {
+    description: {
       type: String,
-      required: true,
-      default: '12:00'
+      required: [true, 'Description is required.']
     },
-    duration: {
-      type: Number,
-      required: false,
-      default: 45
+    read: {
+      type: Boolean,
+      default: false
     },
-    organizer: {
+    Professional: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Professional",
-    },
-    participants: [
-      { 
-        type: Schema.Types.ObjectId,
-        ref: 'Elder' 
-      }
-    ]
+    }
+    
     
   },
   {
@@ -44,13 +37,6 @@ const activitySchema = mongoose.Schema(
 );
 
 
-elderSchema.virtual('activities', {
-	ref: 'Activity',
-	localField: '_id',
-	foreignField: 'elder'
-});
+const Report = mongoose.model('Report', reportSchema)
 
-
-const Activity = mongoose.model('Activity', activitySchema)
-
-module.exports = Activity
+module.exports = Report

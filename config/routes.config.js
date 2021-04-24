@@ -22,7 +22,7 @@ router.post('/login', usersController.authenticate)
 // router.put('/users/:id', usersController.update)
 //ELDERS SECTION
 router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
-router.get('/elders/:id', authMiddleware.isAuthenticated, eldersController.get)
+
 
 //PROFESSIONALS SECTION
 
