@@ -11,9 +11,13 @@ const elderSchema = mongoose.Schema(
         type: String,
         required: [true, 'Lastname is required.'],
     },
+    dni: {
+      type: String,
+        required: [true, 'DNI is required.'],
+    },
     gender: {
       type: String,
-      enum: ['male','female'],
+      enum: ['Varón','Mujer'],
       required: 'Lastname is required'
     },
     dateOfBirth: {
@@ -26,11 +30,11 @@ const elderSchema = mongoose.Schema(
     },
     group: {
       type: String,
-      enum: ['green','orange','red'],
+      enum: ["Verde", "Naranja", "Rojo"],
     },
     diet: {
        type: String,
-       enum: ['basal','diabetic','glutenfree','lowsalt'],
+       enum: ["Basal", "Diabético", "Sin gluten","Bajo en sal"],
        default: 'basal'
     },
     relative: {
