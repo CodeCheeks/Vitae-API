@@ -20,7 +20,19 @@ module.exports.phoneGenerator = () => {
 
 module.exports.randomDate = (start, end) => {
     return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-
-    return 
-
 }
+
+
+module.exports.dniGenerator = () => {
+    let dni = ""
+    let letter = ""
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (let i=0; i<8; i++){
+        dni = dni + (Math.floor(Math.random() * 10))  
+    }
+
+    letter += possible.charAt(Math.floor(Math.random() * possible.length));
+    
+    dni = dni + letter
+    return dni.toString()
+} 
