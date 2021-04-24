@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-
+const { Schema, model } = require('mongoose');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
@@ -37,7 +37,8 @@ const professionalSchema = mongoose.Schema(
     occupation: {
         type: String,
         enum: ['nurse','physiotherapist','doctor','director','coordinator','psychologist','occupational therapist','social worker','animator'],
-    }
+    },
+    reports: [{type: Schema.Types.ObjectId, ref: 'Report' }]
   },
   {
     timestamps: true,
@@ -53,11 +54,7 @@ const professionalSchema = mongoose.Schema(
   }
 )
 
-professionalSchema.virtual('reports', {
-	ref: 'Report',
-	localField: '_id',
-	foreignField: 'professional'
-});
+
 
 professionalSchema.virtual('activities', {
 	ref: 'Activity',

@@ -4,6 +4,7 @@ const usersController = require('../controllers/users.controller')
 const professionalsController = require('../controllers/professionals.controller')
 const candidateController = require('../controllers/candidate.controller')
 const eldersController = require('../controllers/elders.controller')
+const reportsController = require('../controllers/reports.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const upload = require("./storage.config");
 
@@ -23,6 +24,8 @@ router.post('/login', usersController.authenticate)
 //ELDERS SECTION
 router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
 
+//REPORTS
+router.post('/create/report',authMiddleware.isAuthenticated, reportsController.create )
 
 //PROFESSIONALS SECTION
 
