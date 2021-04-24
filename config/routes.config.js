@@ -26,7 +26,8 @@ router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
 router.post('/addElder', authMiddleware.isAuthenticated, eldersController.addElder)
 
 //REPORTS
-router.post('/create/report',authMiddleware.isAuthenticated, reportsController.create )
+router.post('/reports',authMiddleware.isAuthenticated, reportsController.addReport )
+router.get('/reports',authMiddleware.isAuthenticated, reportsController.listReports )
 
 //PROFESSIONALS SECTION
 

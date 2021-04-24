@@ -19,7 +19,6 @@ module.exports.create = (req, res, next) => {
 
 module.exports.list = (req, res, next) => {
   User.find()
-
     .then(users => res.json(users))
     .catch(next)
 }
