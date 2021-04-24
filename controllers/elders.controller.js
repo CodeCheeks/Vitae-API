@@ -4,19 +4,6 @@ const User = require('../models/User.model')
 
 const jwt = require('jsonwebtoken')
 
- /* module.exports.create = (req, res, next) => {
-    Professional.findOne({ email: req.body.email })
-    .then(prof => {
-      if (prof) {
-        next(createError(400, { errors: { email: 'This email is already in use' } }))
-      } else {
-        // prof creation
-        return prof.create(req.body)
-          .then(prof => res.status(201).json(prof))
-      }
-    })
-    .catch(next)
-}  */
 
 module.exports.list = (req, res, next) => {
   Elder.find()
@@ -25,7 +12,7 @@ module.exports.list = (req, res, next) => {
     .catch(next)
 }
 
-
+//CREATE ELDER AND RELATIVE
 module.exports.addElder = (req, res, next) => {
   Elder.findOne({ dni: req.body.dni })
     .then(elder => {
@@ -63,10 +50,45 @@ module.exports.addElder = (req, res, next) => {
       }
     })
     .catch(next)
-
-
 }
   
+////EDIT ELDER 
+
+module.exports.editElder = (req, res, next) => {
+  Elder.findByIdAndUpdate(req.body.id,
+  {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
+    gender: req.body.gender,
+    dni: req.body.dni,
+    dateOfBirth: req.body.birth,
+    group: req.body.group,
+    diet: req.body.diet
+  })
+  .then((e) => {
+    res.status(201).json(e)
+    console.log('Updated') 
+    }  
+  )
+  .catch((e) => {console.log(e)})
+}
+
+//DELETE ELDER
+
+
+
+module.exports.deleteElder = (req, res, next) => {
+  Elder.findByIdAndDelete(req.body.id)
+  .then((e) => {
+    User.findByIdAndDelete(e.relative)
+    .then((r) => {
+      console.log('Elder and relative deleted')
+      }
+    ) 
+  })
+  .catch((e) => {console.log(e)})
+}
 
 /* {
   "email": "piedrapómez@gmail.com",
