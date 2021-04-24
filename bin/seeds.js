@@ -4,12 +4,14 @@ const faker = require('faker')
 const User = require('../models/User.model')
 const Elder = require('../models/Elder.model')
 const Professional = require('../models/Professional.model')
+const Report = require('../models/Report.model')
+
 
 require('../config/db.config')
 
 const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate} = require("./data")
 
-Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).then(() => {
+Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), User.deleteMany()]).then(() => {
 
   for(let i = 0; i<occupation.length; i++){
     Professional.create({
@@ -42,10 +44,24 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), User.deleteMany()]).
               user: u.id
             })
             .then((e) => {
-              User.findByIdAndUpdate(u.id,{elder: e.id})
-              .then(() => {
-                Elder.findByIdAndUpdate(e.id,{relative: u.id})
-                .then(() => console.log(`Created ${e.firstname} con el familiar ${u.firstname}`))
+              Report.create({
+                elder: e.id,
+                title: faker.lorem.words(),
+                description: faker.lorem.paragraphs(),
+                professional:p.id
+              })
+              .then(r => {
+                User.findByIdAndUpdate(u.id,{elder: e.id})
+                .then(() => {
+                  Elder.findByIdAndUpdate(e.id,{relative: u.id, reports: u.id })
+                  .then(() => console.log(`Created ${e.firstname} con el familiar ${u.firstname}`))
+                  .catch((e) => console.log(e));
+
+                  Professional.findByIdAndUpdate(p.id,{reports: u.id })
+                  .then()
+                  .catch(e => next(e));
+
+                })
                 .catch((e) => console.log(e));
               })
               .catch((e) => console.log(e));
