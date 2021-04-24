@@ -68,11 +68,11 @@ module.exports.addElder = (req, res, next) => {
 ////EDIT ELDER AND RELATIVE
 
 module.exports.editElder = (req, res, next) => {
-  Elder.findOneAndUpdate({ id: req.body.id},
+  Elder.findByIdAndUpdate(req.body.id,
   {
-    firstname: req.body.elderfirstname,
-    lastname: req.body.elderlastname,
-    address: req.body.elderaddress,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    address: req.body.address,
     gender: req.body.gender,
     dni: req.body.dni,
     dateOfBirth: req.body.birth,
@@ -80,6 +80,7 @@ module.exports.editElder = (req, res, next) => {
     diet: req.body.diet
   })
   .then((e) => {
+    res.status(201).json(e)
     console.log('Updated') 
     }  
   )
