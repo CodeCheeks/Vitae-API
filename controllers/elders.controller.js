@@ -23,16 +23,6 @@ module.exports.list = (req, res, next) => {
     .then(elders => res.json(elders))
     .catch(next)
 }
-
- /* module.exports.get = (req, res, next) => {
-    Elder.findById(req.currentUser)
-    .then(prof => {
-      if (!prof) {
-        next(createError(404))
-      } else {
-        res.json(prof)
-      }
-    })
-}  */
+  
 
 
