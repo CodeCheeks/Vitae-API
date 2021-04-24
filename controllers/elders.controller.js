@@ -25,7 +25,7 @@ module.exports.list = (req, res, next) => {
     .catch(next)
 }
 
-
+//CREATE ELDER AND RELATIVE
 module.exports.addElder = (req, res, next) => {
   Elder.findOne({ dni: req.body.dni })
     .then(elder => {
@@ -63,10 +63,41 @@ module.exports.addElder = (req, res, next) => {
       }
     })
     .catch(next)
-
-
 }
   
+////EDIT ELDER AND RELATIVE
+
+module.exports.editElder = (req, res, next) => {
+  Elder.findOneAndUpdate({ id: req.body.id},
+  {
+    firstname: req.body.elderfirstname,
+    lastname: req.body.elderlastname,
+    address: req.body.elderaddress,
+    gender: req.body.gender,
+    dni: req.body.dni,
+    dateOfBirth: req.body.birth,
+    group: req.body.group,
+    diet: req.body.diet
+  })
+  .then((e) => {
+    console.log('Updated') 
+    }  
+  )
+  .catch((e) => {console.log(e)})
+}
+
+//DELETE ELDER
+
+////EDIT ELDER AND RELATIVE
+
+module.exports.deleteElder = (req, res, next) => {
+  Elder.findByIdAndDelete(req.body.id)
+  .then((e) => {
+    console.log('Deleted') 
+    }  
+  )
+  .catch((e) => {console.log(e)})
+}
 
 /* {
   "email": "piedrapómez@gmail.com",
