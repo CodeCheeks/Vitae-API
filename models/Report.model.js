@@ -15,9 +15,13 @@ const reportSchema = mongoose.Schema(
       type: Boolean,
       default: false
     },
-    Professional: {
+    professional: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Professional",
+    },
+    elder: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Elder"
     }
     
     

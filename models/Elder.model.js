@@ -37,7 +37,9 @@ const elderSchema = mongoose.Schema(
         type: mongoose.SchemaTypes.ObjectId,
         ref: "User",
     },
-    therapies: [{ type: Schema.Types.ObjectId, ref: 'Activity' }]
+    therapies: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
+
+    reports: [{type: Schema.Types.ObjectId, ref: 'Report' }]
     
   },
   {
@@ -54,17 +56,7 @@ const elderSchema = mongoose.Schema(
   }
 );
 
-elderSchema.virtual('reports', {
-	ref: 'Report',
-	localField: '_id',
-	foreignField: 'elder'
-});
 
-elderSchema.virtual('activities', {
-	ref: 'Activity',
-	localField: '_id',
-	foreignField: 'elder'
-});
 
 
 const Elder = mongoose.model('Elder', elderSchema)
