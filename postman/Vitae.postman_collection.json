@@ -118,6 +118,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "List professionals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/professionals",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"professionals"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -234,6 +260,66 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Create report",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Informe de Fisioterapia\",\n    \"description\": \"Cras vitae nibh laoreet, interdum lectus et, pharetra neque. Nam sapien justo, dapibus id maximus blandit, feugiat eget nisi. Vivamus tristique quam in euismod semper. Cras vitae felis felis. Nulla eros eros, volutpat a orci eu, efficitur mattis tortor. Proin porttitor augue at tortor tristique porttitor. Duis eget aliquam lacus, vitae semper lectus. Nunc consequat metus semper, bibendum metus non, mattis velit. Mauris bibendum eros orci, vel ultrices sem molestie et. Maecenas sagittis aliquam lacus. Suspendisse sed metus bibendum, volutpat neque sit amet, laoreet ante. Duis quis sagittis felis. Sed dictum, odio in accumsan facilisis, metus lectus elementum tortor, et iaculis ex leo vel ex. Phasellus sit amet finibus tellus. Fusce lacinia ligula venenatis justo venenatis, eu tincidunt diam interdum. \",\n    \"professional\": \"id_profesional\",\n  \"elder\": \"id_abuelo\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+
+						"url": {
+							"raw": "{{BASE_API_URL}}/reports",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List elder reports",
+					"request": {
+						"method": "Get",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"add elder id\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/reports",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"response": []
+				}
+
+			]
+
 		}
 
 	]

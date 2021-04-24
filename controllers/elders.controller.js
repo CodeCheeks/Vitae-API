@@ -4,7 +4,6 @@ const User = require('../models/User.model')
 
 const jwt = require('jsonwebtoken')
 
-
 module.exports.list = (req, res, next) => {
   Elder.find()
   .populate('relative')

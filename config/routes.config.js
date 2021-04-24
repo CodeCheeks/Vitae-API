@@ -29,7 +29,8 @@ router.delete('/deleteElder' , authMiddleware.isAuthenticated, eldersController.
 
 
 //REPORTS
-router.post('/create/report',authMiddleware.isAuthenticated, reportsController.create )
+router.post('/reports',authMiddleware.isAuthenticated, reportsController.addReport )
+router.get('/reports',authMiddleware.isAuthenticated, reportsController.listReports )
 
 //PROFESSIONALS SECTION
 
