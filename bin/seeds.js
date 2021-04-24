@@ -9,7 +9,7 @@ const Report = require('../models/Report.model')
 
 require('../config/db.config')
 
-const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate} = require("./data")
+const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator} = require("./data")
 
 Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), User.deleteMany()]).then(() => {
 
@@ -36,7 +36,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(),
             Elder.create({
               firstname: faker.name.firstName(),
               lastname: faker.name.lastName(),
-              dni: faker.random.uuid(),
+              dni: dniGenerator(),
               gender: genderType[Math.floor(Math.random() * genderType.length)],
               dateOfBirth: randomDate(new Date(1920, 0, 1), new Date(1950, 0, 1)),
               address: faker.address.streetAddress(),
