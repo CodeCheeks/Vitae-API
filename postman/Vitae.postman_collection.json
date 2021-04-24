@@ -149,6 +149,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Create elder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"piedrapómez@gmail.com\",\n    \"password\": \"12345678\",\n    \"firstname\": \"Piedra\",\n  \"lastname\": \"Pómez Cornelia\",\n   \"address\": \"Calle Perrete Salvaje nª32\",\n   \"elderfirstname\": \"Eugenio\",\n    \"elderlastname\": \"Pétreo Felipado\",\n    \"elderaddress\": \"Calle Salmón bonito\",\n  \"gender\": \"Varón\",\n   \"dni\": \"50644123E\",\n  \"birth\": \"1945-09-20T04:25:49.791+00:00\",\n    \"group\": \"Verde\",\n  \"diet\": \"Basal\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/addElder",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"addElder"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
