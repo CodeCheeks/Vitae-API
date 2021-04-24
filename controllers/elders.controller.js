@@ -4,19 +4,6 @@ const User = require('../models/User.model')
 
 const jwt = require('jsonwebtoken')
 
- /* module.exports.create = (req, res, next) => {
-    Professional.findOne({ email: req.body.email })
-    .then(prof => {
-      if (prof) {
-        next(createError(400, { errors: { email: 'This email is already in use' } }))
-      } else {
-        // prof creation
-        return prof.create(req.body)
-          .then(prof => res.status(201).json(prof))
-      }
-    })
-    .catch(next)
-}  */
 
 module.exports.list = (req, res, next) => {
   Elder.find()
@@ -65,7 +52,7 @@ module.exports.addElder = (req, res, next) => {
     .catch(next)
 }
   
-////EDIT ELDER AND RELATIVE
+////EDIT ELDER 
 
 module.exports.editElder = (req, res, next) => {
   Elder.findByIdAndUpdate(req.body.id,
@@ -89,14 +76,17 @@ module.exports.editElder = (req, res, next) => {
 
 //DELETE ELDER
 
-////EDIT ELDER AND RELATIVE
+
 
 module.exports.deleteElder = (req, res, next) => {
   Elder.findByIdAndDelete(req.body.id)
   .then((e) => {
-    console.log('Deleted') 
-    }  
-  )
+    User.findByIdAndDelete(e.relative)
+    .then((r) => {
+      console.log('Elder and relative deleted')
+      }
+    ) 
+  })
   .catch((e) => {console.log(e)})
 }
 
