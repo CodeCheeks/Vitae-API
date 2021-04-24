@@ -24,6 +24,9 @@ router.post('/login', usersController.authenticate)
 //ELDERS SECTION
 router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
 router.post('/addElder', authMiddleware.isAuthenticated, eldersController.addElder)
+router.put('/editElder' , authMiddleware.isAuthenticated, eldersController.editElder)
+router.delete('/deleteElder' , authMiddleware.isAuthenticated, eldersController.deleteElder)
+
 
 //REPORTS
 router.post('/reports',authMiddleware.isAuthenticated, reportsController.addReport )
