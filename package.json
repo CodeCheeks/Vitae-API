@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./app.js",
     "dev": "DEBUG=vitae-api:* nodemon ./app.js",
-    "seeds": "node ./bin/seeds.js"
+    "seeds": "node ./bin/seeds.js",
+    "seeds2": "node ./bin/seeds2.js",
+    "seeds3": "node ./bin/seeds3.js"
   },
   "author": "",
   "license": "ISC",
