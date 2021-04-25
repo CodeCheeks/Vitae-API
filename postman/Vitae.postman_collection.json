@@ -201,6 +201,32 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete elder",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"add elder id\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/deleteElder",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"deleteElder"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

@@ -1,8 +1,10 @@
 const createError = require('http-errors')
 const Elder = require('../models/Elder.model')
 const User = require('../models/User.model')
+const Report = require('../models/Report.model')
 
 const jwt = require('jsonwebtoken')
+const Professional = require('../models/Professional.model')
 
 module.exports.list = (req, res, next) => {
   Elder.find()
@@ -81,12 +83,30 @@ module.exports.deleteElder = (req, res, next) => {
   Elder.findByIdAndDelete(req.body.id)
   .then((e) => {
     User.findByIdAndDelete(e.relative)
-    .then((r) => {
+    .then((u) => {
       console.log('Elder and relative deleted')
+      res.status(201).json(e)
       }
     ) 
+    Report.deleteMany({ elder: e._id })
+    .then(r => {
+      console.log('Reports deleted')
+    })
+    Professional.find()
+    .then(professionals => {
+      professionals.forEach(prof => {
+        Report.find({ professional: prof._id })
+        .then(reports => {
+          prof.reports = reports
+          prof.save()
+        })
+        .catch(error => console.log(e))
+      })
+    })
+    .catch(error => console.log(e))
+
   })
-  .catch((e) => {console.log(e)})
+  .catch((e) => console.log(e))
 }
 
 
