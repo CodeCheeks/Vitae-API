@@ -89,20 +89,5 @@ module.exports.deleteElder = (req, res, next) => {
   .catch((e) => {console.log(e)})
 }
 
-/* {
-  "email": "piedrapómez@gmail.com",
-  "password": "12345678",
-  "firstname": "Sisuka",
-  "lastname": "Quinta Cornelia",
-  "address": "Calle Maravillas 21",
-  "elderfirstname": "Eugenio",
-  "elderlastname": "Cabalgatore di Florenza",
-  "elderaddress": "Calle Piongoa",
-  "gender": "Varón",
-  "dni":"560as9W",
-  "birth":"1939-07-28T04:25:49.791+00:00",
-  "group": "Verde",
-  "diet": "Basal"
-}
- */
+
 
