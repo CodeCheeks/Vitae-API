@@ -38,7 +38,14 @@ const professionalSchema = mongoose.Schema(
         type: String,
         enum: ['nurse','physiotherapist','doctor','director','coordinator','psychologist','occupational therapist','social worker','animator'],
     },
-    reports: [{type: Schema.Types.ObjectId, ref: 'Report' }]
+    admin: {
+      type: Boolean,
+      default: false,
+    },
+    reports: [{type: Schema.Types.ObjectId, ref: 'Report' }],
+    organizedactivities: [{type: Schema.Types.ObjectId, ref: 'Activity' }],
+    sentmessages: [{type: Schema.Types.ObjectId, ref: 'Message' }],
+    receivedmessages: [{type: Schema.Types.ObjectId, ref: 'Message' }]
   },
   {
     timestamps: true,
