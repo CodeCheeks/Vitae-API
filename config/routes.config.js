@@ -12,7 +12,6 @@ const upload = require("./storage.config");
 router.post('/users', authMiddleware.isAuthenticated, usersController.create)
 router.get('/users/me', authMiddleware.isAuthenticated, usersController.get)
 router.get('/users', authMiddleware.isAuthenticated, usersController.list)
-// router.delete('/users/:id', usersController.delete)
 // router.put('/users/:id', usersController.update)
 // Auth 
 router.post('/login', usersController.authenticate)
@@ -29,6 +28,7 @@ router.delete('/deleteElder' , authMiddleware.isAuthenticated, eldersController.
 router.post('/professionals', authMiddleware.isAuthenticated, professionalsController.create)
 router.get('/professionals', authMiddleware.isAuthenticated, professionalsController.list) 
 router.get('/professionals/me', authMiddleware.isAuthenticated, professionalsController.get)
+router.put('/editProfessional', authMiddleware.isAuthenticated, professionalsController.edit)
 // Auth 
 router.post('/loginProfessionals', professionalsController.authenticate)
 

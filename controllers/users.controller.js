@@ -36,7 +36,9 @@ module.exports.get = (req, res, next) => {
     })
 }
 
+//The user is deleted in elder controller when the elder is deleted. 
 
+//AUTH
 
 module.exports.authenticate = (req, res, next) => {
   const { email, password } = req.body

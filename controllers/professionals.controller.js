@@ -35,6 +35,24 @@ module.exports.get = (req, res, next) => {
     })
 }
 
+module.exports.edit = (req, res, next) => {
+  Professional.findByIdAndUpdate(req.body.id, {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    phonenumber: req.body.phonenumber,
+    occupation:req.body.occupation,
+    admin: req.body.admin
+  })
+    .then(prof => {
+      if (!prof) {
+        next(createError(404))
+      } else {
+        res.status(201).json(prof)
+        console.log('Updated')
+      }
+    })
+}
+
 
 
 module.exports.authenticate = (req, res, next) => {
