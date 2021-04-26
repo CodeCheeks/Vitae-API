@@ -120,6 +120,58 @@
 					"response": []
 				},
 				{
+					"name": "Edit professional",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"id\": \"6086844487139f315e756c72\",\n\"firstname\": \"Juan\",\n \"lastname\": \"Marquez\",\n \"phonenumber\": \"60000005\",\n \"occupation\": \"physiotherapist\"\n \"admin\": \"false\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/editProfessional",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"/editProfessional"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete professional",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"6086844487139f315e756c72\",\n \"firstname\": \"Pepito\",\n \"lastname\": \"Perez\",\n \"phonenumber\": \"655587985\",\n \"email\": \"physiotherapist2@vitae.com\",\n    \"password\": \"12345678\",\n \"occupation\": \"physiotherapist\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/deleteProfessional",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"/deleteProfessional"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login professional",
 					"request": {
 						"method": "POST",
