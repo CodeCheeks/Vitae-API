@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
     },
     phonenumber: {
       type: String,
-      required: [true, 'Lastname is required.']
+      required: [true, 'Phonenumber is required.']
     },
     address: {
       type: String,
