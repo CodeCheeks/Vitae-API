@@ -37,6 +37,7 @@ router.post('/loginProfessionals', professionalsController.authenticate)
 //--CANDIDATES SECTION--
 router.post('/employ', upload.single("cv"), candidateController.addCandidate)
 router.get('/employ', authMiddleware.isAuthenticated, candidateController.listCandidates)
+router.delete('/deleteCandidate', authMiddleware.isAuthenticated, candidateController.delete)
 
 
 //--REPORTS SECTION--
