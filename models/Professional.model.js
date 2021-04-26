@@ -36,7 +36,7 @@ const professionalSchema = mongoose.Schema(
     },
     occupation: {
         type: String,
-        enum: ['nurse','physiotherapist','doctor','director','coordinator','psychologist','occupational therapist','social worker','animator'],
+        enum: ['nurse','physiotherapist','doctor','director','coordinator','psychologist','occupational therapist','social worker','animator','other'],
     },
     admin: {
       type: Boolean,
