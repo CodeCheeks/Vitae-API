@@ -7,12 +7,19 @@ const mongoose = require("mongoose")
 
 
 module.exports.listReports = (req, res, next) => {
-    console.log(req.query.id)
+  
     //TODO use req.body
+
+    Professional.findById(req.query.id)
+    .populate('reports')
+    .populate('professional')
+      .then(professional => professional != null && res.json(professional.reports))
+      .catch(e => console.log(e))
+
     Elder.findById(req.query.id)
     .populate('reports')
     .populate('professional')
-      .then(elder => res.json(elder.reports))
+      .then(elder => elder != null && res.json(elder.reports))
       .catch(e => console.log(e))
 }
   
@@ -51,13 +58,14 @@ module.exports.editReport = (req, res, next) => {
   }
 
   module.exports.deleteReport = (req, res, next) => {
-    Report.findById(req.body.id)
+
+    //TODO use req.body
+    
+    Report.findById(req.query.id)
       .then(r => {
         
-
         Professional.findById(r.professional)
             .then((p) => {
-                
                 p.reports.splice(p.reports.indexOf(r.id),1)
                 p.save() 
                 
