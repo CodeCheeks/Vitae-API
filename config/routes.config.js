@@ -5,6 +5,7 @@ const professionalsController = require('../controllers/professionals.controller
 const candidateController = require('../controllers/candidate.controller')
 const eldersController = require('../controllers/elders.controller')
 const reportsController = require('../controllers/reports.controller')
+const activitiesController = require('../controllers/activity.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const upload = require("./storage.config");
 
@@ -47,6 +48,8 @@ router.put('/editReport',authMiddleware.isAuthenticated, reportsController.editR
 router.delete('/deleteReport',authMiddleware.isAuthenticated, reportsController.deleteReport )
 
 //--ACTIVITIES SECTION--
+
+router.post('/activities',authMiddleware.isAuthenticated, activitiesController.addActivity )
 
 
 //--MESSAGES SECTION--

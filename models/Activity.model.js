@@ -44,12 +44,6 @@ const activitySchema = mongoose.Schema(
 );
 
 
-elderSchema.virtual('activities', {
-	ref: 'Activity',
-	localField: '_id',
-	foreignField: 'elder'
-});
-
 
 const Activity = mongoose.model('Activity', activitySchema)
 
