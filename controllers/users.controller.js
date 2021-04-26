@@ -26,6 +26,7 @@ module.exports.list = (req, res, next) => {
 module.exports.get = (req, res, next) => {
   User.findById(req.currentUser)
   .populate("elder")
+  .populate('reports')
     .then(user => {
       if (!user) {
         next(createError(404))

@@ -7,12 +7,14 @@ const mongoose = require("mongoose")
 
 
 module.exports.listReports = (req, res, next) => {
-    console.log(req.body.id)
-    Elder.findById(req.body.id)
+    console.log(req.query.id)
+    //TODO use req.body
+    Elder.findById(req.query.id)
     .populate('reports')
+    .populate('professional')
       .then(elder => res.json(elder.reports))
       .catch(e => console.log(e))
-}//TODO IGNORA EL PRIMER ELEMENTO DEL ARRAY DE REPORTS. SI HAY SOLAMENTE 1 REPORT, DIRECTAMENTE NI LO MUESTRA.
+}
   
 module.exports.addReport = (req, res, next) => {
     Elder.findOne({ _id: req.body.elder })
