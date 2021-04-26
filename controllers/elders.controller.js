@@ -15,6 +15,7 @@ module.exports.list = (req, res, next) => {
 
 //CREATE ELDER AND RELATIVE
 module.exports.addElder = (req, res, next) => {
+  console.log(req.body)
   Elder.findOne({ dni: req.body.dni })
     .then(elder => {
       if(elder){
