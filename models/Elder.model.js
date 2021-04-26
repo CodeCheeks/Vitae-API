@@ -35,7 +35,7 @@ const elderSchema = mongoose.Schema(
     diet: {
        type: String,
        enum: ["Basal", "Diabético", "Sin gluten","Bajo en sal"],
-       default: 'basal'
+       default: 'Basal'
     },
     relative: {
         type: mongoose.SchemaTypes.ObjectId,
