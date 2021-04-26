@@ -43,7 +43,14 @@ const elderSchema = mongoose.Schema(
     },
     therapies: [{ type: Schema.Types.ObjectId, ref: 'Activity' }],
 
-    reports: [{type: Schema.Types.ObjectId, ref: 'Report' }]
+    reports: [{type: Schema.Types.ObjectId, ref: 'Report' }],
+
+    pictures: [String],
+    
+    profilepicture: {
+      type: String,
+      default: 'https://res.cloudinary.com/dv7hswrot/image/upload/v1619428231/Vitae/avatares/avataaars_4_dblx23.png'
+    }
     
   },
   {
