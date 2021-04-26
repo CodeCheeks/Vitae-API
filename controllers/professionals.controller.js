@@ -33,6 +33,35 @@ module.exports.get = (req, res, next) => {
         res.json(prof)
       }
     })
+    .catch(next)
+}
+
+module.exports.edit = (req, res, next) => {
+  Professional.findByIdAndUpdate(req.body.id, {
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    phonenumber: req.body.phonenumber,
+    occupation:req.body.occupation,
+    admin: req.body.admin
+  })
+    .then(prof => {
+      if (!prof) {
+        next(createError(404))
+      } else {
+        res.status(201).json(prof)
+        console.log('Updated')
+      }
+    })
+    .catch((e) => console.log(e))
+}
+
+module.exports.delete = (req, res, next) => {
+  Professional.findByIdAndDelete(req.body.id)
+    .then(prof => {
+        res.status(201).json(prof)
+        console.log(`${prof} has been deleted`)
+    })
+    .catch((e) => console.log(e))
 }
 
 

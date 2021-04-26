@@ -28,3 +28,12 @@ module.exports.listCandidates = (req, res, next) => {
     .catch(e => console.log(e))
 } 
 
+module.exports.delete = (req, res, next) => {
+  Candidate.findByIdAndDelete(req.body.id)
+    .then(cand => {
+        res.status(201).json(cand)
+        console.log(`${cand} has been deleted`)
+    })
+    .catch((e) => console.log(e))
+}
+
