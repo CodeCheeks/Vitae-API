@@ -94,6 +94,32 @@
 			"name": "Professionals",
 			"item": [
 				{
+					"name": "Create professional",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"firstname\": \"Pepito\",\n \"lastname\": \"Perez\",\n \"phonenumber\": \"655587985\",\n \"email\": \"physiotherapist2@vitae.com\",\n    \"password\": \"12345678\",\n \"occupation\": \"physiotherapist\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/professionals",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"/professionals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Login professional",
 					"request": {
 						"method": "POST",

@@ -3,14 +3,15 @@ const Professional = require('../models/Professional.model')
 
 const jwt = require('jsonwebtoken')
 
+
  module.exports.create = (req, res, next) => {
     Professional.findOne({ email: req.body.email })
     .then(prof => {
       if (prof) {
         next(createError(400, { errors: { email: 'This email is already in use' } }))
       } else {
-        // prof creation
-        return prof.create(req.body)
+        
+        return Professional.create(req.body)
           .then(prof => res.status(201).json(prof))
       }
     })
