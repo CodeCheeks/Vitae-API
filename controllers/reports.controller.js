@@ -34,3 +34,18 @@ module.exports.addReport = (req, res, next) => {
     })
     .catch(e => console.log(e))
 }
+
+module.exports.editReport = (req, res, next) => {
+    Report.findByIdAndUpdate(req.body.id,
+    {
+      title: req.body.title,
+      description: req.body.description,
+      read: false
+    })
+    .then((r) => {
+      res.status(201).json(r)
+      console.log(`Report number ${r.id} Updated`) 
+      }  
+    )
+    .catch((e) => {console.log(e)})
+  }
