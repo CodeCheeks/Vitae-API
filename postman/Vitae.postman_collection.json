@@ -420,8 +420,34 @@
 						}
 					},
 					"response": []
-				}
+				},
+				{
+					"name": "Edit report",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Titulo a editar\",\n    \"description\": \"Este informe ha sido editado \",\n    \"id\": \"id_informe\",\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 
+						"url": {
+							"raw": "{{BASE_API_URL}}/editReport",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"editReport"
+							]
+						}
+					},
+					"response": []
+				}
 			]
 
 		}
