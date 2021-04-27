@@ -53,6 +53,7 @@ router.post('/activities',authMiddleware.isAuthenticated, activitiesController.a
 router.get('/activities',authMiddleware.isAuthenticated, activitiesController.listActivities )
 router.get('/allActivities',authMiddleware.isAuthenticated, activitiesController.listAllActivities )
 router.post('/addParticipants',authMiddleware.isAuthenticated, activitiesController.addElders )
+router.delete('/deleteParticipants',authMiddleware.isAuthenticated, activitiesController.deleteElders )
 
 
 

@@ -78,6 +78,33 @@ module.exports.addActivity = (req, res, next) => {
 }
 
 
+//TOFIX
+module.exports.deleteElders = (req, res, next) => {
+  //Expects a body with the activity id and an array with elder ids
+  Activity.findById(req.body.id)
+  .then(act => {
+    for(let i=0; i< req.body.arr.length; i++){
+      Elder.findById(req.body.arr[i])
+        .then(eld => { 
+          console.log(act.participants)
+          eld.therapies.splice(eld.therapies.indexOf(act.id),1)
+          eld.save()
+          
+         Activity.findById(act.id)
+          .then((a) => {
+            a.participants.splice(a.participants.indexOf(eld.id),1)
+            a.save()
+          })
+          .catch((e) => console.log(e))                      
+        })
+        .catch((e) => console.log(e))
+    }  
+    res.status(201).json(act) 
+    
+  })
+.catch(e => console.log(e))
+}
+
 /* module.exports.editReport = (req, res, next) => {
     Report.findByIdAndUpdate(req.body.id,
     {
