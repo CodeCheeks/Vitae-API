@@ -450,7 +450,67 @@
 				}
 			]
 
-		}
+		},
 
+		{
+			"name": "Activities",
+			"item": [
+				{
+					"name": "Add elder to activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"arr\": [\"elder id 1\",\"elder id 2\",\"elder id 3\"],\n    \"id\": \"activity id\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/addParticipants",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"addParticipants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Activity",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Activity title\",\n    \"schedule\": \"12:00\",\n \"duration\": \"45\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/activities",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"activities"
+							]
+						}
+					},
+					"response": []
+				}
+				
+
+			]
+
+		}
 	]
 }
