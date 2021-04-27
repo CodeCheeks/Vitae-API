@@ -9,7 +9,7 @@ const Report = require('../models/Report.model')
 
 require('../config/db.config')
 
-const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator} = require("./data")
+const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator, elderAvatar} = require("./data")
 
 Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), User.deleteMany()])
 .then(() => {

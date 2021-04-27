@@ -30,7 +30,8 @@ module.exports.addElder = (req, res, next) => {
           dni: req.body.dni,
           dateOfBirth: req.body.birth,
           group: req.body.group,
-          diet: req.body.diet
+          diet: req.body.diet,
+          age: req.body.age
         })
         .then(e => {
           console.log(e)

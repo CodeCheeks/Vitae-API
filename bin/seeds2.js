@@ -8,7 +8,7 @@ const Report = require('../models/Report.model')
 
 require('../config/db.config')
 
-
+const {elderAvatarMale, elderAvatarFemale, } = require("./data")
 Professional.find()
 .then(professionals => {
   professionals.forEach(prof => {
@@ -29,6 +29,14 @@ Elder.find()
     Report.find({ elder: e._id })
     .then(reports => {
       e.reports = reports
+      if(e.gender === "Varón"){
+        e.profilepicture = elderAvatarMale[Math.floor(Math.random() * elderAvatarMale.length)]
+      }
+      else{
+        e.profilepicture = elderAvatarFemale[Math.floor(Math.random() * elderAvatarFemale.length)]
+      }
+
+      e.age = new Date().getFullYear()-(e.dateOfBirth.getFullYear())
       e.save()
     })
     .catch(error => console.log("---------- Error finding reports ----------"))

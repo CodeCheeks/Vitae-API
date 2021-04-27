@@ -24,6 +24,9 @@ const elderSchema = mongoose.Schema(
         type: Date,
         required: 'Lastname is required'  
     },
+    age: {
+      type: Number
+    },
     address: {
       type: String,
       required: 'Address is required'
