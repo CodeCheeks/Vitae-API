@@ -6,16 +6,59 @@ const mongoose = require("mongoose")
 const Activity = require('../models/Activity.model')
 
 
-/* module.exports.listReports = (req, res, next) => {
-    console.log(req.query.id)
-    //TODO use req.body
-    Elder.findById(req.query.id)
-    .populate('reports')
-    .populate('professional')
-      .then(elder => res.json(elder.reports))
+ module.exports.listAllActivities = (req, res, next) => {
+    Activity.find()
+    .populate('elders')
+    .populate('professionals')
+      .then(act => res.json(act))
       .catch(e => console.log(e))
-} */
+} 
+
+module.exports.listActivities = (req, res, next) => {
   
+  //TODO use req.body
+
+  Professional.findById(req.query.id)
+  .populate('organizedactivities')
+  .populate('participants')
+    .then(professional => professional != null && res.json(professional.organizedactivities))
+    .catch(e => console.log(e))
+
+  Elder.findById(req.query.id)
+  .populate('therapies')
+  .populate('organizer')
+    .then(elder => elder != null && res.json(elder.therapies))
+    .catch(e => console.log(e))
+}
+
+module.exports.addElders = (req, res, next) => {
+  //Expects a body with the activity id and an array with elder ids
+  Activity.findById(req.body.id)
+  .then(act => {
+    for(let i=0; i< req.body.arr.length; i++){
+      Elder.findById(req.body.arr[i])
+          .then(eld => { 
+              eld.therapies.push(act.id)
+              eld.save()
+      
+              Activity.findById(act.id)
+              .then((a) => {
+                a.participants.push(eld.id)
+                a.save()
+              })
+              .catch((e) => console.log(e))
+                                    
+          }
+        )
+        .catch((e) => console.log(e))
+    }  
+    res.status(201).json(act) 
+    
+  })
+  
+  .catch(e => console.log(e))
+}
+
 module.exports.addActivity = (req, res, next) => {
     const {title,schedule,duration,organizer} = req.body
     Professional.findById(req.currentUser)
@@ -33,6 +76,7 @@ module.exports.addActivity = (req, res, next) => {
     })
     .catch(e => console.log(e))
 }
+
 
 /* module.exports.editReport = (req, res, next) => {
     Report.findByIdAndUpdate(req.body.id,

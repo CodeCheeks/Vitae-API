@@ -50,6 +50,11 @@ router.delete('/deleteReport',authMiddleware.isAuthenticated, reportsController.
 //--ACTIVITIES SECTION--
 
 router.post('/activities',authMiddleware.isAuthenticated, activitiesController.addActivity )
+router.get('/activities',authMiddleware.isAuthenticated, activitiesController.listActivities )
+router.get('/allActivities',authMiddleware.isAuthenticated, activitiesController.listAllActivities )
+router.post('/addParticipants',authMiddleware.isAuthenticated, activitiesController.addElders )
+
+
 
 
 //--MESSAGES SECTION--
