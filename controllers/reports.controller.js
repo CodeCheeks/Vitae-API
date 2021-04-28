@@ -6,6 +6,14 @@ const mongoose = require("mongoose")
 
 
 
+
+module.exports.getReport = (req, res, next) => {
+  console.log(req.params.id)
+  Report.findById(req.params.id)
+  .then(report => res.status(201).json(report))
+  .catch(e => console.log(e))
+}
+
 module.exports.listReports = (req, res, next) => {
   
     //TODO use req.body
