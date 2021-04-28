@@ -462,7 +462,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"arr\": [\"elder id 1\",\"elder id 2\",\"elder id 3\"],\n    \"id\": \"activity id\"\n  }",
+							"raw": "{\n    \"arr\": [\"elder_id_1\",\"elder_id_2\",\"elder_id_3\"],\n    \"id\": \"activity_id\"\n  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -506,11 +506,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete participants",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"arr\": [\"elder_id_1\",\"elder_id_2\",\"elder_id_3\"],\n    \"id\": \"activity_id\"\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/deleteParticipants",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"deleteParticipants"
+							]
+						}
+					},
+					"response": []
 				}
-				
-
 			]
-
 		}
 	]
 }
