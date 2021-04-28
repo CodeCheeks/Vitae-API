@@ -56,7 +56,7 @@ module.exports.edit = (req, res, next) => {
 }
 
 module.exports.delete = (req, res, next) => {
-  Professional.findByIdAndDelete(req.body.id)
+  Professional.findByIdAndDelete(req.query.id)
     .then(prof => {
         res.status(201).json(prof)
         console.log(`${prof} has been deleted`)
