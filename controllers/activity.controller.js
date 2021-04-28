@@ -77,8 +77,35 @@ module.exports.addActivity = (req, res, next) => {
     .catch(e => console.log(e))
 }
 
+module.exports.deleteActivity = (req, res, next) => {
+  Activity.findById(req.body.id)
+  .then(act => {
+    act.participants.forEach(part => {
+      Elder.findById(part)
+      .then(eld => {
+        eld.therapies.splice(eld.therapies.indexOf(act.id),1)
+        eld.save()
+      })
+      .catch(e => console.log(e))
+    })
+    Professional.findById(act.organizer)
+    .then(prof => {
+      prof.organizedactivities.splice(prof.organizedactivities.indexOf(act.id),1)
+      prof.save()
+    })
+    .catch(e => console.log(e))
+  })
+  Activity.findByIdAndDelete(req.body.id)
+    .then(a => {
+      console.log("Activity deleted")
+      
+      res.status(201).json(a)
+    })
+    .catch(e => console.log(e))
+  .catch()
+}
 
-//TOFIX
+
 module.exports.deleteParticipants = (req, res, next) => {
   Activity.findById(req.body.id)
   .then(act => {

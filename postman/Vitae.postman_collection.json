@@ -470,12 +470,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_API_URL}}/addParticipants",
+							"raw": "{{BASE_API_URL}}/participants",
 							"host": [
 								"{{BASE_API_URL}}"
 							],
 							"path": [
-								"addParticipants"
+								"participants"
 							]
 						}
 					},
@@ -508,6 +508,32 @@
 					"response": []
 				},
 				{
+					"name": "Delete Activity",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"Activity_id\"\n }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_API_URL}}/activity",
+							"host": [
+								"{{BASE_API_URL}}"
+							],
+							"path": [
+								"activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete participants",
 					"request": {
 						"method": "DELETE",
@@ -522,12 +548,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{BASE_API_URL}}/deleteParticipants",
+							"raw": "{{BASE_API_URL}}/participants",
 							"host": [
 								"{{BASE_API_URL}}"
 							],
 							"path": [
-								"deleteParticipants"
+								"participants"
 							]
 						}
 					},
