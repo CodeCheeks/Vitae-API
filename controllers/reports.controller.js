@@ -51,7 +51,8 @@ module.exports.addReport = (req, res, next) => {
 }
 
 module.exports.editReport = (req, res, next) => {
-    Report.findByIdAndUpdate(req.body.id,
+    console.log(req.body)
+    Report.findByIdAndUpdate(req.params.id,
     {
       title: req.body.title,
       description: req.body.description,

@@ -45,7 +45,7 @@ router.delete('/deleteCandidate', authMiddleware.isAuthenticated, candidateContr
 router.post('/reports',authMiddleware.isAuthenticated, reportsController.addReport )
 router.get('/reports',authMiddleware.isAuthenticated, reportsController.listReports )
 router.get('/reports/:id',authMiddleware.isAuthenticated, reportsController.getReport)
-router.put('/editReport',authMiddleware.isAuthenticated, reportsController.editReport )
+router.put('/editReport/:id',authMiddleware.isAuthenticated, reportsController.editReport )
 router.delete('/deleteReport',authMiddleware.isAuthenticated, reportsController.deleteReport )
 
 //--ACTIVITIES SECTION--
