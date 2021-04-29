@@ -57,7 +57,7 @@ router.get('/activities/:id',authMiddleware.isAuthenticated, activitiesControlle
 router.get('/allActivities',authMiddleware.isAuthenticated, activitiesController.listAllActivities )
 router.put('/activity/:id',authMiddleware.isAuthenticated, activitiesController.editActivity )
 router.post('/participants',authMiddleware.isAuthenticated, activitiesController.addParticipants )
-router.delete('/participants',authMiddleware.isAuthenticated, activitiesController.deleteParticipants )
+router.delete('/participants/:id',authMiddleware.isAuthenticated, activitiesController.deleteParticipants )
 
 
 

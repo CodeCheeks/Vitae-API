@@ -40,7 +40,7 @@ module.exports.editActivity = (req, res, next) => {
 
   Activity.findByIdAndUpdate(req.params.id,
     {
-      title: req.body.duration,
+      title: req.body.title,
       duration: req.body.duration,
       schedule:req.body.schedule
     })
@@ -53,8 +53,10 @@ module.exports.editActivity = (req, res, next) => {
         
                 Activity.findById(req.params.id)
                 .then((a) => {
-                  a.participants.push(eld.id)
-                  a.save()
+                 if(!a.participants.includes(eld.id)) {
+                   a.participants.push(eld.id)
+                   a.save()
+                 }
                 })
                 .catch((e) => console.log(e))                      
             }
@@ -143,8 +145,8 @@ module.exports.deleteActivity = (req, res, next) => {
 }
 
 
-module.exports.deleteParticipants = (req, res, next) => {
-  Activity.findById(req.body.id)
+module.exports.deleteParticipants = (req, res, next) => { //TODO ADD PARTICIPANT PARAM ID TO DELETE
+  Activity.findById(req.params.activity_id)
   .then(act => {
       req.body.arr.forEach(elder => {
       act.participants.splice(act.participants.indexOf(elder),1)
