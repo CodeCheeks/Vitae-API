@@ -29,7 +29,7 @@ module.exports.listCandidates = (req, res, next) => {
 } 
 
 module.exports.delete = (req, res, next) => {
-  Candidate.findByIdAndDelete(req.body.id)
+  Candidate.findByIdAndDelete(req.query.id)
     .then(cand => {
         res.status(201).json(cand)
         console.log(`${cand} has been deleted`)
