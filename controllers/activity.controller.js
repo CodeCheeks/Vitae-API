@@ -15,21 +15,58 @@ const Activity = require('../models/Activity.model')
 } 
 
 module.exports.listActivities = (req, res, next) => {
-  
-  //TODO use req.body
-
-  Professional.findById(req.query.id)
+  Professional.findById(req.params.id)
   .populate('organizedactivities')
   .populate('participants')
     .then(professional => professional != null && res.json(professional.organizedactivities))
     .catch(e => console.log(e))
 
-  Elder.findById(req.query.id)
+  Elder.findById(req.params.id)
   .populate('therapies')
   .populate('organizer')
     .then(elder => elder != null && res.json(elder.therapies))
     .catch(e => console.log(e))
 }
+
+
+module.exports.getActivity = (req, res, next) => {
+  Activity.findById(req.params.id)
+  .then(activity => res.status(201).json(activity))
+  .catch(e => console.log(e))
+}
+
+
+module.exports.editActivity = (req, res, next) => {
+
+  Activity.findByIdAndUpdate(req.params.id,
+    {
+      title: req.body.duration,
+      duration: req.body.duration,
+      schedule:req.body.schedule
+    })
+    .then(act => {
+      for(let i=0; i< req.body.participants.length; i++){
+        Elder.findById(req.body.participants[i])
+            .then(eld => { 
+                eld.therapies.push(act.id)
+                eld.save()
+        
+                Activity.findById(req.params.id)
+                .then((a) => {
+                  a.participants.push(eld.id)
+                  a.save()
+                })
+                .catch((e) => console.log(e))                      
+            }
+          )
+          .catch((e) => console.log(e))
+      }  
+      res.status(201).json(act) 
+    })
+    .catch(e => console.log(e))
+}
+
+
 
 module.exports.addParticipants = (req, res, next) => {
   //Expects a body with the activity id and an array with elder ids
