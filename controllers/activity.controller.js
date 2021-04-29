@@ -146,14 +146,14 @@ module.exports.deleteActivity = (req, res, next) => {
 
 
 module.exports.deleteParticipants = (req, res, next) => { //TODO ADD PARTICIPANT PARAM ID TO DELETE
-  Activity.findById(req.params.activity_id)
+  Activity.findById(req.params.id)
   .then(act => {
-      req.body.arr.forEach(elder => {
+      req.body.participant_id.forEach(elder => {
       act.participants.splice(act.participants.indexOf(elder),1)
     })
     act.save()
-    for(let i=0; i< req.body.arr.length; i++){
-      Elder.findById(req.body.arr[i])
+    for(let i=0; i< req.body.participant_id.length; i++){
+      Elder.findById(req.body.participant_id[i])
         .then(eld => { 
           eld.therapies.splice(eld.therapies.indexOf(act.id),1)
           eld.save()    
