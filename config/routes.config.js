@@ -29,7 +29,9 @@ router.delete('/deleteElder' , authMiddleware.isAuthenticated, eldersController.
 router.post('/professionals', authMiddleware.isAuthenticated, professionalsController.create)
 router.get('/professionals', authMiddleware.isAuthenticated, professionalsController.list) 
 router.get('/professionals/me', authMiddleware.isAuthenticated, professionalsController.get)
-router.put('/editProfessional', authMiddleware.isAuthenticated, professionalsController.edit)
+router.get('/professionals/:id', authMiddleware.isAuthenticated, professionalsController.listOne)
+
+router.put('/editProfessional/:id', authMiddleware.isAuthenticated, professionalsController.edit)
 router.delete('/deleteProfessional', authMiddleware.isAuthenticated, professionalsController.delete)
 // Auth 
 router.post('/loginProfessionals', professionalsController.authenticate)

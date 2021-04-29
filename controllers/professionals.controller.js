@@ -24,6 +24,18 @@ module.exports.list = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.listOne = (req, res, next) => {
+  Professional.findById(req.params.id)
+    .then(prof => {
+      if (!prof) {
+        next(createError(404))
+      } else {
+        res.json(prof)
+      }
+    })
+    .catch(next)
+}
+
 module.exports.get = (req, res, next) => {
   Professional.findById(req.currentUser)
     .then(prof => {
@@ -37,9 +49,10 @@ module.exports.get = (req, res, next) => {
 }
 
 module.exports.edit = (req, res, next) => {
-  Professional.findByIdAndUpdate(req.body.id, {
+  Professional.findByIdAndUpdate(req.params.id, {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
+    email: req.body.email,
     phonenumber: req.body.phonenumber,
     occupation:req.body.occupation,
     admin: req.body.admin
