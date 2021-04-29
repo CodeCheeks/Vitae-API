@@ -78,7 +78,7 @@ module.exports.addActivity = (req, res, next) => {
 }
 
 module.exports.deleteActivity = (req, res, next) => {
-  Activity.findById(req.body.id)
+  Activity.findById(req.params.id)
   .then(act => {
     act.participants.forEach(part => {
       Elder.findById(part)
@@ -95,7 +95,7 @@ module.exports.deleteActivity = (req, res, next) => {
     })
     .catch(e => console.log(e))
   })
-  Activity.findByIdAndDelete(req.body.id)
+  Activity.findByIdAndDelete(req.params.id)
     .then(a => {
       console.log("Activity deleted")
       
