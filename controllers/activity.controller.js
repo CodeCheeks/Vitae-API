@@ -14,10 +14,16 @@ const Activity = require('../models/Activity.model')
       .catch(e => console.log(e))
 } 
 
+
+
 module.exports.listActivities = (req, res, next) => {
   Professional.findById(req.params.id)
-  .populate('organizedactivities')
-  .populate('participants')
+  .populate({
+    path: 'organizedactivities',
+    populate: {
+      path: 'participants',
+    }}) 
+
     .then(professional => professional != null && res.json(professional.organizedactivities))
     .catch(e => console.log(e))
 
