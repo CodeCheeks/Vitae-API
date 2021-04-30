@@ -18,8 +18,12 @@ module.exports.listReports = (req, res, next) => {
     //TODO use req.body
 
     Professional.findById(req.query.id)
-    .populate('reports')
-    .populate('professional')
+    .populate({
+      path: 'reports',
+      populate: {
+        path: 'elder',
+      }}) 
+
       .then(professional => professional != null && res.json(professional.reports))
       .catch(e => console.log(e))
 
