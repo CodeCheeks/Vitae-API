@@ -13,6 +13,18 @@ module.exports.list = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.getElder = (req, res, next) => {
+  Elder.findById(req.params.id)
+  .populate('relative')
+  .populate({
+      path: 'therapies',
+      populate: {
+        path: 'organizer',
+      }})
+    .then(elder => res.json(elder))
+    .catch(next)
+}
+
 //CREATE ELDER AND RELATIVE
 module.exports.addElder = (req, res, next) => {
   console.log(req.body)
