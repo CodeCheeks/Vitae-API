@@ -19,6 +19,7 @@ router.post('/login', usersController.authenticate)
 
 
 //--ELDERS SECTION--
+router.get('/elders/:id', authMiddleware.isAuthenticated, eldersController.getElder)
 router.get('/elders', authMiddleware.isAuthenticated, eldersController.list)
 router.get('/elders/:id', authMiddleware.isAuthenticated, eldersController.getElder)
 router.post('/addElder', authMiddleware.isAuthenticated, eldersController.addElder)
