@@ -21,15 +21,19 @@ module.exports.listReports = (req, res, next) => {
     .populate({
       path: 'reports',
       populate: {
-        path: 'elder',
+        path: 'elder'
       }}) 
 
       .then(professional => professional != null && res.json(professional.reports))
       .catch(e => console.log(e))
 
     Elder.findById(req.query.id)
-    .populate('reports')
-    .populate('professional')
+    .populate({
+      path: 'reports',
+      populate: {
+        path: 'professional'
+      }}) 
+
       .then(elder => elder != null && res.json(elder.reports))
       .catch(e => console.log(e))
 }
