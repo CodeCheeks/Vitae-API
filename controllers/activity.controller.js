@@ -105,19 +105,30 @@ module.exports.addParticipants = (req, res, next) => {
 }
 
 module.exports.addActivity = (req, res, next) => {
+  console.log(req.body)
     const {title,schedule,duration,organizer} = req.body
     Professional.findById(req.currentUser)
     .then(prof => {
-        return Activity.create(req.body)
-            .then(act => { 
-                prof.organizedactivities.push(act.id)
-                prof.save()
-                act.organizer = prof.id
-                act.save()
-                res.status(201).json(act)
-                console.log(`The activity ${act.title} was created`)                          
-            }
-          )
+      Activity.create(req.body)
+        .then(act => { 
+            prof.organizedactivities.push(act.id)
+            prof.save()
+            act.organizer = prof.id
+            act.save()
+
+            for(let i=0; i< req.body.participants.length; i++){
+              Elder.findById(req.body.participants[i])
+                  .then(eld => { 
+                      eld.therapies.push(act.id)
+                      eld.save()                
+                  }
+                )
+                .catch((e) => console.log(e))
+            }  
+          console.log(`The activity ${act.title} was created`)                  
+          res.status(201).json(act)
+        })
+        .catch(e => console.log(e))
     })
     .catch(e => console.log(e))
 }
