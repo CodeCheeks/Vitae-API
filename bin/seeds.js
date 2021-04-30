@@ -10,8 +10,9 @@ const Report = require('../models/Report.model')
 require('../config/db.config')
 
 const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator, elderAvatar} = require("./data")
+const Activity = require('../models/Activity.model')
 
-Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), User.deleteMany()])
+Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), Activity.deleteMany(), User.deleteMany()])
 .then(() => {
   for(let i = 0; i<occupation.length; i++){
     Professional.create({
@@ -57,7 +58,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(),
             Report.create({
               elder: e.id,
               title: faker.lorem.words(),
-              description: faker.lorem.paragraphs(),
+              description: faker.lorem.paragraphs() ,
               professional:prof.id
             })
             .then(r => {console.log(`Report added`)})
