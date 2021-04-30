@@ -59,11 +59,11 @@ module.exports.addElder = (req, res, next) => {
 ////EDIT ELDER 
 
 module.exports.editElder = (req, res, next) => {
-  Elder.findByIdAndUpdate(req.body.id,
+  Elder.findByIdAndUpdate(req.params.id,
   {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    address: req.body.address,
+    firstname: req.body.elderfirstname,
+    lastname: req.body.elderlastname,
+    address: req.body.elderaddress,
     gender: req.body.gender,
     dni: req.body.dni,
     dateOfBirth: req.body.birth,
@@ -71,10 +71,20 @@ module.exports.editElder = (req, res, next) => {
     diet: req.body.diet
   })
   .then((e) => {
-    res.status(201).json(e)
-    console.log('Updated') 
-    }  
-  )
+    User.findByIdAndUpdate(e.relative, {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      phonenumber: req.body.phonenumber,
+      address: req.body.address,
+      email: req.body.email,
+    })
+      .then((u) => {
+        
+        console.log('Updated')
+      })
+      .catch((e) => console.log(e))
+     
+  })
   .catch((e) => {console.log(e)})
 }
 
@@ -83,7 +93,7 @@ module.exports.editElder = (req, res, next) => {
 
 
 module.exports.deleteElder = (req, res, next) => {
-  Elder.findByIdAndDelete(req.body.id)
+  Elder.findByIdAndDelete(req.query.id)
   .then((e) => {
     User.findByIdAndDelete(e.relative)
     .then((u) => {
