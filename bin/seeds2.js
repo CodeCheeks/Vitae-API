@@ -15,6 +15,14 @@ Professional.find()
     Report.find({ professional: prof._id })
     .then(reports => {
       prof.reports = reports
+
+      if(prof.occupation === "director"){
+        prof.admin = true 
+      } 
+      if(prof.occupation === "coordinator"){
+        prof.admin = true 
+      } 
+
       prof.save()
     })
     .catch(error => console.log("---------- Error finding reports ----------"))
