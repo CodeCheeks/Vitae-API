@@ -35,6 +35,17 @@ module.exports.listActivities = (req, res, next) => {
 }
 
 
+
+module.exports.getActivitySector = (req, res, next) => {
+  console.log(req.params.sector)
+  Activity.find({sector: req.params.sector})
+  .then(activities => {
+    //console.log(activities)
+    res.status(201).json(activities)
+  })
+  .catch(e => console.log(e))
+}
+
 module.exports.getActivity = (req, res, next) => {
   Activity.findById(req.params.id)
   .then(activity => res.status(201).json(activity))
@@ -47,8 +58,9 @@ module.exports.editActivity = (req, res, next) => {
   Activity.findByIdAndUpdate(req.params.id,
     {
       title: req.body.title,
-      duration: req.body.duration,
-      schedule:req.body.schedule
+      startHour: req.body.startHour,
+      finishHour:req.body.finishHour,
+      startDate: req.body.startDate
     })
     .then(act => {
       for(let i=0; i< req.body.participants.length; i++){
@@ -162,7 +174,7 @@ module.exports.deleteActivity = (req, res, next) => {
 }
 
 
-module.exports.deleteParticipants = (req, res, next) => { //TODO ADD PARTICIPANT PARAM ID TO DELETE
+module.exports.deleteParticipants = (req, res, next) => { 
   Activity.findById(req.params.id)
   .then(act => {
       req.body.participant_id.forEach(elder => {

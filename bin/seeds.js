@@ -5,13 +5,14 @@ const User = require('../models/User.model')
 const Elder = require('../models/Elder.model')
 const Professional = require('../models/Professional.model')
 const Report = require('../models/Report.model')
+const Activity = require('../models/Activity.model')
 
 
 require('../config/db.config')
 
 const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator, elderAvatar} = require("./data")
 
-Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), User.deleteMany()])
+Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), Activity.deleteMany(), User.deleteMany()])
 .then(() => {
   for(let i = 0; i<occupation.length; i++){
     Professional.create({

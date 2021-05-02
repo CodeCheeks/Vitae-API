@@ -57,11 +57,13 @@ router.delete('/deleteReport',authMiddleware.isAuthenticated, reportsController.
 router.post('/activities',authMiddleware.isAuthenticated, activitiesController.addActivity )
 router.delete('/activity/:id',authMiddleware.isAuthenticated, activitiesController.deleteActivity )
 router.get('/activity/:id',authMiddleware.isAuthenticated, activitiesController.getActivity )
+router.get('/activities-sector/:sector',authMiddleware.isAuthenticated, activitiesController.getActivitySector )
 router.get('/activities/:id',authMiddleware.isAuthenticated, activitiesController.listActivities )
 router.get('/allActivities',authMiddleware.isAuthenticated, activitiesController.listAllActivities )
 router.put('/activity/:id',authMiddleware.isAuthenticated, activitiesController.editActivity )
 router.post('/participants',authMiddleware.isAuthenticated, activitiesController.addParticipants )
 router.delete('/participants/:id',authMiddleware.isAuthenticated, activitiesController.deleteParticipants )
+
 
 
 
