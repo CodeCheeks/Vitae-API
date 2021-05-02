@@ -1,3 +1,4 @@
+const { date } = require('faker');
 const mongoose = require('mongoose')
 const { Schema, model } = require('mongoose');
 
@@ -7,15 +8,20 @@ const activitySchema = mongoose.Schema(
       type: String,
       required: [true, 'Title is required.']
     },
-    schedule: {
+    startHour: {
       type: String,
       required: true,
-      default: '12:00'
     },
-    duration: {
-      type: Number,
+    finishHour: {
+      type: String,
+      required: true,
+    },
+    startDate: {
+      type: Date
+    },
+    sector: {
+      type: String,
       required: false,
-      default: 45
     },
     organizer: {
       type: mongoose.SchemaTypes.ObjectId,
