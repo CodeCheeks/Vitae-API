@@ -28,8 +28,11 @@ module.exports.listActivities = (req, res, next) => {
     .catch(e => console.log(e))
 
   Elder.findById(req.params.id)
-  .populate('therapies')
-  .populate('organizer')
+  .populate({
+    path: 'therapies',
+    populate: {
+      path: 'organizer',
+    }}) 
     .then(elder => elder != null && res.json(elder.therapies))
     .catch(e => console.log(e))
 }
