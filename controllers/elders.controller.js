@@ -100,6 +100,32 @@ module.exports.editElder = (req, res, next) => {
   .catch((e) => {console.log(e)})
 }
 
+module.exports.uploadElderImage = (req, res, next) => {
+  if (req.file) {
+    req.body.picture = req.file.path;
+  }
+
+  Elder.findById(req.params.id)
+  .then(elder => {
+    elder.pictures.push(req.file.path)
+    elder.save()
+  })
+  .catch(e => next(e))
+}
+module.exports.addCandidate = (req, res, next) => {
+
+   Candidate.findOne({ email: req.body.email })
+    .then(info => {
+      if (info) {
+        next(createError(400, { errors: { email: 'This email is already in use' } }))
+      } else {
+        return Candidate.create(req.body)
+          .then(info => res.status(201).json(info))
+      }
+    })
+    .catch(e => console.log(e))
+} 
+
 //DELETE ELDER
 
 
