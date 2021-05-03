@@ -74,8 +74,13 @@ router.delete('/participants/:id',authMiddleware.isAuthenticated, activitiesCont
 
 //--MESSAGES SECTION--
 router.post('/messages/:receptor_id',authMiddleware.isAuthenticated, messagesController.addMessage )
+//Professionals messages list
 router.get('/receivedMessages/:id',authMiddleware.isAuthenticated, messagesController.listReceivedMessages )
 router.get('/sentMessages/:id',authMiddleware.isAuthenticated, messagesController.listSentMessages )
+//Users messages list
+router.get('/userReceivedMessages/:id',authMiddleware.isAuthenticated, messagesController.userListReceivedMessages )
+router.get('/userSentMessages/:id',authMiddleware.isAuthenticated, messagesController.userListSentMessages )
+
 router.delete('/messages/:id',authMiddleware.isAuthenticated, messagesController.deleteMessage )
 
 

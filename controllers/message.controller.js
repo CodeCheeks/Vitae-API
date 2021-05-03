@@ -102,7 +102,7 @@ module.exports.addMessage = (req, res, next) => {
     .catch(e => next())
   }
 
-
+//PROFESSIONALS MESSAGES
 module.exports.listReceivedMessages = (req, res, next) => {
 Professional.findById(req.params.id)
 .populate({
@@ -115,6 +115,7 @@ Professional.findById(req.params.id)
     .catch(e => console.log(e))
 }
 
+
 module.exports.listSentMessages = (req, res, next) => {
 Professional.findById(req.params.id)
 .populate({
@@ -126,6 +127,33 @@ Professional.findById(req.params.id)
     .then(professional => res.json(professional.sentmessages))
     .catch(e => console.log(e))
 }
+
+//USER MESSAGES
+module.exports.userListReceivedMessages = (req, res, next) => {
+    User.findById(req.params.id)
+    .populate({
+        path: 'receivedmessages',
+        populate: {
+          path: 'sender',
+        }}
+        ) 
+        .then(user => res.json(user.receivedmessages))
+        .catch(e => console.log(e))
+    }
+
+module.exports.userListSentMessages = (req, res, next) => {
+    User.findById(req.params.id)
+    .populate({
+        path: 'sentmessages',
+        populate: {
+          path: 'receiver',
+        }}
+    )
+        .then(user => res.json(user.sentmessages))
+        .catch(e => console.log(e))
+    }
+
+
 
 module.exports.deleteMessage = (req, res, next) => {
 Message.findByIdAndDelete(req.params.id)
