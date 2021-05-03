@@ -6,6 +6,7 @@ const candidateController = require('../controllers/candidate.controller')
 const eldersController = require('../controllers/elders.controller')
 const reportsController = require('../controllers/reports.controller')
 const activitiesController = require('../controllers/activity.controller')
+const messagesController = require('../controllers/message.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const upload = require("./storage.config");
 
@@ -69,6 +70,10 @@ router.delete('/participants/:id',authMiddleware.isAuthenticated, activitiesCont
 
 
 //--MESSAGES SECTION--
+router.post('/messages/:receptor_id',authMiddleware.isAuthenticated, messagesController.addMessage )
+router.get('/receivedMessages/:id',authMiddleware.isAuthenticated, messagesController.listReceivedMessages )
+router.get('/sentMessages/:id',authMiddleware.isAuthenticated, messagesController.listSentMessages )
+router.delete('/messages/:id',authMiddleware.isAuthenticated, messagesController.deleteMessage )
 
 
 module.exports = router;
