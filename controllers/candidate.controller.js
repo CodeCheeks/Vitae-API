@@ -2,8 +2,6 @@ const createError = require('http-errors')
 const Candidate = require('../models/Candidate.model')
 
 
-
-
 module.exports.listCandidates = (req, res, next) => {
   Candidate.find()
     .then(elders => res.json(elders))

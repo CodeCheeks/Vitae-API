@@ -9,6 +9,7 @@ const activitiesController = require('../controllers/activity.controller')
 const messagesController = require('../controllers/message.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const upload = require("./storage.config");
+const uploadImg = require("./storageImage.config");
 
 //--USERS SECTION--
 router.post('/users', authMiddleware.isAuthenticated, usersController.create)
@@ -26,6 +27,8 @@ router.get('/elders/:id', authMiddleware.isAuthenticated, eldersController.getEl
 router.post('/addElder', authMiddleware.isAuthenticated, eldersController.addElder)
 router.put('/editElder/:id' , authMiddleware.isAuthenticated, eldersController.editElder)
 router.delete('/deleteElder' , authMiddleware.isAuthenticated, eldersController.deleteElder)
+router.put('/elderImages/:id' , uploadImg.single("picture"), authMiddleware.isAuthenticated, eldersController.uploadElderImage)
+
 
 //--PROFESSIONALS SECTION--
 
