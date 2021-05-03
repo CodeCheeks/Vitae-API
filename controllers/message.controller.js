@@ -1,25 +1,105 @@
 const Message = require("../models/Message.model")
 const Professional = require("../models/Professional.model")
+const User = require("../models/User.model")
 
 module.exports.addMessage = (req, res, next) => {
-    Message.create(req.body)
-    .then(mes => {
-        Professional.findById(mes.receiver)
-        .then(receiver => {
-            receiver.receivedmessages.push(mes._id)
-            receiver.save()
-        })
-        .catch(e => console.log(e))
+    console.log(req.body)
+    
+    //--------Professional send to professional------------
+    Professional.findById(req.params.receptor_id)
+        .then( receptor => {
+            if(receptor){
+            Professional.findById(req.body.sender)
+            .then( sender => {
+                if(sender){
+                    Object.assign(req.body, {
+                        onModelReceiver: 'Professional',
+                        onModelSender: 'Professional'
+                    })
+                    Message.create(req.body)
+                        .then(mes => {
+                            Professional.findById(mes.receiver)
+                            .then(receiver => {
+                                receiver.receivedmessages.push(mes._id)
+                                receiver.save()
+                            })
+                            .catch(e => console.log(e))
+                
+                            Professional.findById(mes.sender)
+                            .then(sender => {
+                                sender.sentmessages.push(mes._id)
+                                sender.save()
+                            })
+                            .catch(e => console.log(e))
+                
+                            })
+                        .catch(e => console.log(e))
+                }
+            })
+            .catch(e => next(e))
+        }
+    })
+    .catch(e => next(e))
 
-        Professional.findById(mes.sender)
-        .then(sender => {
-            sender.sentmessages.push(mes._id)
-            sender.save()
+   //--------Professional send to user--------------- 
+   User.findById(req.params.receptor_id)
+    .then(receptor => {
+        if(receptor){
+            Object.assign(req.body, {
+                onModelReceiver: 'User',
+                onModelSender: 'Professional'
+            })
+            Message.create(req.body)
+                .then(mes => {
+                    User.findById(mes.receiver)
+                    .then(receiver => {
+                        receiver.receivedmessages.push(mes._id)
+                        receiver.save()
+                    })
+                    .catch(e => console.log(e))
+    
+                    Professional.findById(mes.sender)
+                    .then(sender => {
+                        sender.sentmessages.push(mes._id)
+                        sender.save()
+                    })
+                    .catch(e => console.log(e))
+    
+                    })
+                .catch(e => console.log(e))
+            }
         })
-        .catch(e => console.log(e))
+    .catch(e => next())
 
-        })
-    .catch(e => console.log(e))
+    //--------User send to professional--------------- 
+    User.findById(req.body.sender)
+    .then(res => {
+        if(res){
+            Object.assign(req.body, {
+                onModelReceiver: 'Professional',
+                onModelSender: 'User'
+            })
+            Message.create(req.body)
+                .then(mes => {
+                    Professional.findById(mes.receiver)
+                    .then(receiver => {
+                        receiver.receivedmessages.push(mes._id)
+                        receiver.save()
+                    })
+                    .catch(e => console.log(e))
+    
+                    User.findById(mes.sender)
+                    .then(sender => {
+                        sender.sentmessages.push(mes._id)
+                        sender.save()
+                    })
+                    .catch(e => console.log(e))
+    
+                    })
+                .catch(e => console.log(e))
+        }
+    })
+    .catch(e => next())
   }
 
 
@@ -51,18 +131,38 @@ module.exports.deleteMessage = (req, res, next) => {
 Message.findByIdAndDelete(req.params.id)
 .then(mes => {
     Professional.findById(mes.receiver)
-    .then(p => {
-        p.receivedmessages.splice(p.receivedmessages.indexOf(mes.id),1)
-        p.save() 
-        Professional.findById(mes.sender)
-        .then(p => {    
-            p.sentmessages.splice(p.sentmessages.indexOf(mes.id),1)
-            p.save() 
-            res.status(201).json(mes)
+        .then(p => {
+            if(p){
+                p.receivedmessages.splice(p.receivedmessages.indexOf(mes.id),1)
+                p.save() 
+            }
+            else{
+            User.findById(mes.receiver)
+                .then( u => {
+                    u.receivedmessages.splice(u.receivedmessages.indexOf(mes.id),1)
+                    u.save()  
+                }
+            )}
+            Professional.findById(mes.sender)
+            .then(s => {
+                if(s){
+                    s.sentmessages.splice(s.sentmessages.indexOf(mes.id),1)
+                    s.save() 
+                    res.status(201).json(mes)
+                }else{
+                    User.findById(mes.sender)
+                        .then( us => {
+                            us.sentmessages.splice(us.sentmessages.indexOf(mes.id),1)
+                            us.save() 
+                            res.status(201).json(mes) 
+                        }
+
+                    ) 
+                }   
+            })
+            .catch(e => console.log(e))
         })
         .catch(e => console.log(e))
-    })
-    .catch(e => console.log(e))
 })
 .catch(e => console.log(e))
 }
