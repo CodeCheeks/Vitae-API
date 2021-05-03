@@ -14,12 +14,23 @@ const messageSchema = mongoose.Schema(
     },
     sender: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "Professional",
+      refPath: 'onModelSender'
     },
     receiver: {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Professional",
+        refPath: 'onModelReceiver'
+    },
+    onModelSender: {
+      type: String,
+      required: true,
+      enum: ['User', 'Professional']
+    },
+    onModelReceiver: {
+      type: String,
+      required: true,
+      enum: ['User', 'Professional']
     }
+
     
   },
   {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
-
+const { Schema, model } = require('mongoose');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
@@ -40,7 +40,9 @@ const userSchema = mongoose.Schema(
     elder: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "Elder",
-  }
+  },
+    sentmessages: [{type: Schema.Types.ObjectId, ref: 'Message' }],
+    receivedmessages: [{type: Schema.Types.ObjectId, ref: 'Message' }]
   },
   {
     timestamps: true,
