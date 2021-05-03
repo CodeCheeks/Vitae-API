@@ -7,10 +7,10 @@ const messageSchema = mongoose.Schema(
       type: String,
       required: [true, 'Title is required.']
     },
-    description: {
+    message: {
       type: String,
       required: true,
-      default: '12:00'
+
     },
     sender: {
       type: mongoose.SchemaTypes.ObjectId,
