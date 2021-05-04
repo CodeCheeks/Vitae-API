@@ -5,6 +5,7 @@ const Report = require('../models/Report.model')
 
 const jwt = require('jsonwebtoken')
 const Professional = require('../models/Professional.model')
+const { newUserVitae } = require('../config/mailer.config')
 
 module.exports.list = (req, res, next) => {
   Elder.find()
@@ -63,6 +64,7 @@ module.exports.addElder = (req, res, next) => {
             elder: e.id
           })
           .then(u => {
+            newUserVitae(u.email)
             Elder.findByIdAndUpdate(u.elder, {relative: u.id})
             .then(info => res.status(201).json(info))
           })
