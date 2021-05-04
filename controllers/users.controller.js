@@ -2,6 +2,7 @@ const createError = require('http-errors')
 const User = require('../models/User.model')
 const Elder = require('../models/Elder.model')
 const jwt = require('jsonwebtoken')
+const { newUserVitae } = require('../config/mailer.config')
 
 module.exports.create = (req, res, next) => {
   User.findOne({ email: req.body.email })
@@ -11,7 +12,9 @@ module.exports.create = (req, res, next) => {
       } else {
         // User creation
         return User.create(req.body)
-          .then(user => res.status(201).json(user))
+          .then(user => {
+            res.status(201).json(user)
+          })
       }
     })
     .catch(next)
