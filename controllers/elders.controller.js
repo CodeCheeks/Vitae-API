@@ -25,6 +25,12 @@ module.exports.getElder = (req, res, next) => {
     .catch(next)
 }
 
+module.exports.getElderByName = (req, res, next) => {
+  Elder.findOne({firstname: req.params.name})
+    .then(elder => res.json(elder))
+    .catch(next)
+}
+
 //CREATE ELDER AND RELATIVE
 module.exports.addElder = (req, res, next) => {
   console.log(req.body)
