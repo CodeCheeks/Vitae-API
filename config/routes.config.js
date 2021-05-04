@@ -6,6 +6,7 @@ const candidateController = require('../controllers/candidate.controller')
 const eldersController = require('../controllers/elders.controller')
 const reportsController = require('../controllers/reports.controller')
 const activitiesController = require('../controllers/activity.controller')
+const authController = require('../controllers/auth.controller')
 const messagesController = require('../controllers/message.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const upload = require("./storage.config");
@@ -16,8 +17,14 @@ router.post('/users', authMiddleware.isAuthenticated, usersController.create)
 router.get('/users/me', authMiddleware.isAuthenticated, usersController.get)
 router.get('/users', authMiddleware.isAuthenticated, usersController.list)
 // router.put('/users/:id', usersController.update)
+
 // Auth 
 router.post('/login', usersController.authenticate)
+//Activate account
+router.post('/getToken/:token', authController.getToken)
+router.post('/activate/:token', authController.activate)
+
+
 
 
 //--ELDERS SECTION--

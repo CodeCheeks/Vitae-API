@@ -36,6 +36,7 @@ Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(),
       address:faker.address.streetAddress(),
       email: faker.internet.email(),
       password: '12345678',
+      active: true
     })
     .then(u => {
       console.log(`User ${u.firstname} ${u.lastname} added`)
