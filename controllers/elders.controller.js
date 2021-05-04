@@ -64,7 +64,7 @@ module.exports.addElder = (req, res, next) => {
             elder: e.id
           })
           .then(u => {
-            newUserVitae(u.email)
+            newUserVitae(u.email, u.token)
             Elder.findByIdAndUpdate(u.elder, {relative: u.id})
             .then(info => res.status(201).json(info))
           })

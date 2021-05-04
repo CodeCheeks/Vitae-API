@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const { Schema, model } = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@']+(\.[^<>()[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const PASSWORD_PATTERN = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
@@ -23,6 +24,14 @@ const userSchema = mongoose.Schema(
     address: {
       type: String,
       required: 'Address is required'
+    },
+    active: {
+      type: Boolean,
+      default: false
+    },
+    token: {
+      type: String,
+      default: () => uuidv4()
     },
     email: {
       type: String,
@@ -73,6 +82,9 @@ userSchema.pre('save', function(next) {
 userSchema.methods.checkPassword = function (passwordToCheck) {
   return bcrypt.compare(passwordToCheck, this.password);
 };
+
+
+
 
 
 const User = mongoose.model('User', userSchema)
