@@ -8,7 +8,7 @@ const Report = require('../models/Report.model')
 
 require('../config/db.config')
 
-const {elderAvatarMale, elderAvatarFemale, } = require("./data")
+const {elderAvatarMale, elderAvatarFemale, ElderPictures, } = require("./data")
 Professional.find()
 .then(professionals => {
   professionals.forEach(prof => {
@@ -43,7 +43,7 @@ Elder.find()
       else{
         e.profilepicture = elderAvatarFemale[Math.floor(Math.random() * elderAvatarFemale.length)]
       }
-
+      e.pictures = ElderPictures()
       e.age = new Date().getFullYear()-(e.dateOfBirth.getFullYear())
       e.save()
     })

@@ -20,6 +20,16 @@ module.exports.elderAvatarFemale = [
 
 ]
 
+const elderPictures= [
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240953/Vitae/images/seeds/pexels-cottonbro-4057758_reyelo.jpg",
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240953/Vitae/images/seeds/pexels-mentatdgt-1254690_xzeokx.jpg",
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240953/Vitae/images/seeds/pexels-expect-best-1243332_abdobd.jpg",
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240952/Vitae/images/seeds/pexels-pixabay-34761_q7zpls.jpg",
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240952/Vitae/images/seeds/pexels-andrea-piacquadio-3823488_eg2acu.jpg",
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240952/Vitae/images/seeds/pexels-matthias-zomer-339620_klczvv.jpg",
+    "https://res.cloudinary.com/dv7hswrot/image/upload/v1620240952/Vitae/images/seeds/pexels-pixabay-302083_tjselz.jpg"
+]
+
 
 module.exports.phoneGenerator = () => {
     let phoneNum ="6"
@@ -53,3 +63,10 @@ module.exports.dniGenerator = () => {
     dni = dni + letter
     return dni.toString()
 } 
+
+
+module.exports.ElderPictures = () => {
+    let pictures = []
+    elderPictures.forEach(pict => pictures.push(pict))
+    return pictures
+}
