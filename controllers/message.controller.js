@@ -22,6 +22,7 @@ module.exports.addMessage = (req, res, next) => {
                             .then(receiver => {
                                 receiver.receivedmessages.push(mes._id)
                                 receiver.save()
+                                res.status(201).json(mes)
                             })
                             .catch(e => console.log(e))
                 
@@ -55,6 +56,7 @@ module.exports.addMessage = (req, res, next) => {
                     .then(receiver => {
                         receiver.receivedmessages.push(mes._id)
                         receiver.save()
+                        res.status(201).json(mes)
                     })
                     .catch(e => console.log(e))
     
@@ -73,8 +75,10 @@ module.exports.addMessage = (req, res, next) => {
 
     //--------User send to professional--------------- 
     User.findById(req.body.sender)
-    .then(res => {
-        if(res){
+    .then(response => {
+         
+        if(response){
+            console.log('Usuario-profesional')
             Object.assign(req.body, {
                 onModelReceiver: 'Professional',
                 onModelSender: 'User'
@@ -85,6 +89,9 @@ module.exports.addMessage = (req, res, next) => {
                     .then(receiver => {
                         receiver.receivedmessages.push(mes._id)
                         receiver.save()
+                        res.status(201).json(mes)
+                        
+                     
                     })
                     .catch(e => console.log(e))
     
@@ -92,12 +99,15 @@ module.exports.addMessage = (req, res, next) => {
                     .then(sender => {
                         sender.sentmessages.push(mes._id)
                         sender.save()
+                        
                     })
                     .catch(e => console.log(e))
-    
+                    
                     })
                 .catch(e => console.log(e))
+                
         }
+        
     })
     .catch(e => next())
   }

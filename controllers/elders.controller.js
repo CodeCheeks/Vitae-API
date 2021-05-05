@@ -117,6 +117,7 @@ module.exports.uploadElderImage = (req, res, next) => {
   .then(elder => {
     elder.pictures.push(req.file.path)
     elder.save()
+    res.status(201).json(elder.pictures[elder.pictures.length-1 ])
   })
   .catch(e => next(e))
 }
