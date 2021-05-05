@@ -99,7 +99,7 @@ module.exports.editElder = (req, res, next) => {
       email: req.body.email,
     })
       .then((u) => {
-        
+        res.status(201).json(u)
         console.log('Updated')
       })
       .catch((e) => console.log(e))
