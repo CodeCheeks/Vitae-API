@@ -1,5 +1,6 @@
 const nodemailer = require("nodemailer")
 const { generateTemplate } = require("./emailTemplates/mailtemplate")
+const { recoverTemplate } = require("./emailTemplates/recoverTemplate")
 
 const transporter = nodemailer.createTransport({
 	service: "Gmail",
@@ -9,7 +10,7 @@ const transporter = nodemailer.createTransport({
 	}
 });
 
-//Sends the email
+//Activation email
 module.exports.newUserVitae = (email, token) => {
     transporter.sendMail({
         from: `"Centro de día Vitae" <${process.env.NM_USER}>`, 
@@ -17,6 +18,17 @@ module.exports.newUserVitae = (email, token) => {
         subject: "Bienvenido a Vitae",
         html: generateTemplate(token)
       })
+}
+
+
+//Recover pass email
+module.exports.recoverPassEmail = (email, token) => {
+  transporter.sendMail({
+      from: `"Centro de día Vitae" <${process.env.NM_USER}>`, 
+      to: email, 
+      subject: "Reseteo de contraseña",
+      html: recoverTemplate(token)
+    })
 }
 
 

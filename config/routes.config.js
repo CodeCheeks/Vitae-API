@@ -18,11 +18,14 @@ router.get('/users/me', authMiddleware.isAuthenticated, usersController.get)
 router.get('/users', authMiddleware.isAuthenticated, usersController.list)
 // router.put('/users/:id', usersController.update)
 
-// Auth 
+//Auth 
 router.post('/login', usersController.authenticate)
 //Activate account
 router.post('/getToken/:token', authController.getToken)
 router.post('/activate/:token', authController.activate)
+//Recover pass
+router.post('/recoverPass/:token', authController.doRecoverPassEmail)
+router.post('/recoverPass', authController.recoverPassEmail)
 
 
 
