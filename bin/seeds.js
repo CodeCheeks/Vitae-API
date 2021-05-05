@@ -11,7 +11,7 @@ const Message = require('../models/Message.model')
 
 require('../config/db.config')
 
-const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator, elderAvatar} = require("./data")
+const {groupTypes, genderType, dietTypes, occupation, phoneGenerator, randomDate, dniGenerator, elderPictures} = require("./data")
 
 Promise.all([Professional.deleteMany(), Elder.deleteMany(), Report.deleteMany(), Message.deleteMany(), Activity.deleteMany(), User.deleteMany()])
 .then(() => {
