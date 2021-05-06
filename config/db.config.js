@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/vitae'
+const DB_REMOTE = process.env.DB_REMOTE || 'mongodb://localhost:27017/vitae'
 
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
-  .then(() => console.info(`Successfully connected to the database ${MONGODB_URI}`))
+  .connect(DB_REMOTE, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false })
+  .then(() => console.info(`Successfully connected to the database remote-vitae`))
   .catch((error) => {
-    console.error(`An error ocurred trying to connect to de database ${MONGODB_URI}`, error)
+    console.error(`An error ocurred trying to connect to de database remote-vitae`, error)
     process.exit(0)
   })
 
