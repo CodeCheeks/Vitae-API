@@ -8,6 +8,7 @@ const reportsController = require('../controllers/reports.controller')
 const activitiesController = require('../controllers/activity.controller')
 const authController = require('../controllers/auth.controller')
 const messagesController = require('../controllers/message.controller')
+const picturesController = require('../controllers/pictures.controller')
 const authMiddleware = require('../middlewares/auth.middleware')
 const upload = require("./storage.config");
 const uploadImg = require("./storageImage.config");
@@ -38,7 +39,6 @@ router.get('/eldersByName/:name', authMiddleware.isAuthenticated, eldersControll
 router.post('/addElder', authMiddleware.isAuthenticated, eldersController.addElder)
 router.put('/editElder/:id' , authMiddleware.isAuthenticated, eldersController.editElder)
 router.delete('/deleteElder' , authMiddleware.isAuthenticated, eldersController.deleteElder)
-router.put('/elderImages/:id' , uploadImg.single("picture"), authMiddleware.isAuthenticated, eldersController.uploadElderImage)
 
 
 //--PROFESSIONALS SECTION--
@@ -80,7 +80,9 @@ router.post('/participants',authMiddleware.isAuthenticated, activitiesController
 router.delete('/participants/:id',authMiddleware.isAuthenticated, activitiesController.deleteParticipants )
 
 
-
+// -- PICTURES SECTION --
+router.put('/elderImages/:id' , uploadImg.single("picture"), authMiddleware.isAuthenticated, eldersController.uploadElderImage)
+router.get('/pictures/:id',authMiddleware.isAuthenticated, picturesController.getPictures )
 
 
 //--MESSAGES SECTION--

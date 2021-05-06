@@ -119,7 +119,11 @@ Professional.findById(req.params.id)
     path: 'receivedmessages',
     populate: {
       path: 'sender',
-    }}
+      populate: {
+        path: 'elder'
+      }
+    }
+}
     ) 
     .then(professional => res.json(professional.receivedmessages))
     .catch(e => console.log(e))
