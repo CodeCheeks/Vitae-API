@@ -48,11 +48,11 @@ module.exports.authenticate = (req, res, next) => {
 
   User.findOne({ email })
     .then(user => {
-      if(user.active){
-        if (!user) {
-          // Error if no user
-          next(createError(404, { errors: { email: 'Email or password is incorrect' }}))
-        } else {
+      if (!user) {
+        // Error if no user
+        next(createError(404, { errors: { email: 'Email or password is incorrect' }}))
+      } else {
+          if(user.active){
           return user.checkPassword(password)
             .then(match => {
               if (!match) {
@@ -71,11 +71,11 @@ module.exports.authenticate = (req, res, next) => {
                  })
               }
             })
+          }
+          else{
+            next(createError(401, 'Please, active your account'))
+          }
         }
-      }
-      else{
-        next(createError(401, 'Please, active your account'))
-      }
     })
     .catch(error => next(error))
 }
