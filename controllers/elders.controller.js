@@ -88,7 +88,8 @@ module.exports.editElder = (req, res, next) => {
     dni: req.body.dni,
     dateOfBirth: req.body.birth,
     group: req.body.group,
-    diet: req.body.diet
+    diet: req.body.diet,
+    age: req.body.age
   })
   .then((e) => {
     User.findByIdAndUpdate(e.relative, {
