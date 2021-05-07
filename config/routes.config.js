@@ -17,7 +17,6 @@ const uploadImg = require("./storageImage.config");
 router.post('/users', authMiddleware.isAuthenticated, usersController.create)
 router.get('/users/me', authMiddleware.isAuthenticated, usersController.get)
 router.get('/users', authMiddleware.isAuthenticated, usersController.list)
-// router.put('/users/:id', usersController.update)
 
 //Auth 
 router.post('/login', usersController.authenticate)
