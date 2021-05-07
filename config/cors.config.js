@@ -10,7 +10,7 @@ let corsMiddleware = cors({
       callback(new Error('Not allowed by CORS'))
     }
   },
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization", "params"],
 })
 
 module.exports = corsMiddleware;
