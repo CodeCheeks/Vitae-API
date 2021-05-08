@@ -1,6 +1,6 @@
 const cors = require("cors")
 
-let whitelist = [process.env.CORS_ORIGIN_1, process.env.CORS_ORIGIN_2, process.env.CORS_ORIGIN_LOCAL]
+let whitelist = [process.env.CORS_ORIGIN_1, process.env.CORS_ORIGIN_2, process.env.CORS_ORIGIN_2, process.env.CORS_ORIGIN_LOCAL]
 
 let corsMiddleware = cors({
   origin: function (origin, callback) {
@@ -10,7 +10,7 @@ let corsMiddleware = cors({
       callback(new Error('Not allowed by CORS'))
     }
   },
-  allowedHeaders: ["Content-Type", "Authorization", "params", "Access-Control-Allow-Origin"]
+  allowedHeaders: ["Content-Type", "Authorization", "params"]
 
 })
 
