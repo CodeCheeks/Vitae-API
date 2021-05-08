@@ -54,7 +54,6 @@ module.exports.addElder = (req, res, next) => {
           age: req.body.age
         })
         .then(e => {
-          console.log(e)
           User.create({
             email: req.body.email,
             password: "12345678",
