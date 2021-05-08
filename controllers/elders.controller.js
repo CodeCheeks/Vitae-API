@@ -147,11 +147,11 @@ module.exports.deleteElder = (req, res, next) => {
     User.findByIdAndDelete(e.relative)
     .then(u => {
       u.sentmessages.forEach(mess => {
-        Message.findByIdAndDelete(mess.sentmessages)
-        .then()
+        Message.findByIdAndDelete(mess)
+        .then(m => console.log(m))
         .catch(e => console.log(e))
-        Message.findByIdAndDelete(mess.receivedmessages)
-        .then()
+        Message.findByIdAndDelete(mess)
+        .then(m => console.log(m))
         .catch(e => console.log(e))
       })
       res.status(201).json(e)
