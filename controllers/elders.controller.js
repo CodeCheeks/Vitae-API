@@ -6,6 +6,7 @@ const Report = require('../models/Report.model')
 const jwt = require('jsonwebtoken')
 const Professional = require('../models/Professional.model')
 const { newUserVitae } = require('../config/mailer.config')
+const Message = require('../models/Message.model')
 
 module.exports.list = (req, res, next) => {
   Elder.find()
@@ -145,7 +146,12 @@ module.exports.deleteElder = (req, res, next) => {
   .then((e) => {
     User.findByIdAndDelete(e.relative)
     .then(u => {
-      console.log('Elder and relative deleted')
+      Message.deleteMany({ receiver: u._id })
+      .then(m => console.log('received messages deleted'))
+      .catch(e => console.log(e))
+      Message.deleteMany({ sender: u._id })
+      .then(m => console.log('sent messages deleted'))
+      .catch(e => console.log(e))
       res.status(201).json(e)
       }
     ) 
@@ -161,10 +167,10 @@ module.exports.deleteElder = (req, res, next) => {
           prof.reports = reports
           prof.save()
         })
-        .catch(error => console.log(e))
+        .catch(e => console.log(e))
       })
     })
-    .catch(error => console.log(e))
+    .catch(e => console.log(e))
 
   })
   .catch((e) => console.log(e))
