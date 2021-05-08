@@ -108,6 +108,9 @@ module.exports.authenticate = (req, res, next) => {
               }
             })
         }
+        else {
+          next(createError(404, { errors: { email: 'Email or password is incorrect' }}))
+        }
       }
     })
     .catch(error => next(error))
