@@ -96,7 +96,7 @@ module.exports.editElder = (req, res, next) => {
     User.findByIdAndUpdate(e.relative, {
       firstname: req.body.firstname,
       lastname: req.body.lastname,
-      phonenumber: req.body.phonenumber,
+      phonenumber: req.body.phoneNumber,
       address: req.body.address,
       email: req.body.email,
     })
