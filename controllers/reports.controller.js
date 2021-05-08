@@ -9,6 +9,7 @@ const mongoose = require("mongoose")
 
 module.exports.getReport = (req, res, next) => {
   Report.findById(req.params.id)
+  .populate('elder')
   .then(report => res.status(201).json(report))
   .catch(e => console.log(e))
 }
