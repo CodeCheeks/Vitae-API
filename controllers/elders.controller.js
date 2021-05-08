@@ -60,7 +60,7 @@ module.exports.addElder = (req, res, next) => {
             password: "12345678",
             firstname: req.body.firstname,
             lastname: req.body.lastname,
-            phonenumber: req.body.phonenumber,
+            phonenumber: req.body.phoneNumber,
             address: req.body.address,
             elder: e.id
           })
