@@ -1,6 +1,6 @@
 const cors = require("cors")
 
-let whitelist = [process.env.CORS_ORIGIN_1, process.env.CORS_ORIGIN_2, process.env.CORS_ORIGIN_3, process.env.CORS_ORIGIN_LOCAL]
+let whitelist = [process.env.CORS_ORIGIN_1, process.env.CORS_ORIGIN_2, process.env.CORS_ORIGIN_LOCAL]
 
 let corsMiddleware = cors({
   origin: function (origin, callback) {

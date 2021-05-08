@@ -54,6 +54,7 @@ module.exports.addElder = (req, res, next) => {
           age: req.body.age
         })
         .then(e => {
+          console.log(e)
           User.create({
             email: req.body.email,
             password: "12345678",
@@ -68,9 +69,9 @@ module.exports.addElder = (req, res, next) => {
             Elder.findByIdAndUpdate(u.elder, {relative: u.id})
             .then(info => res.status(201).json(info))
           })
-          .catch()
+          .catch(e => next(e))
         })
-        .catch()
+        .catch(e => next(e))
       }
     })
     .catch(next)
