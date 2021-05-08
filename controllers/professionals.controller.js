@@ -88,24 +88,26 @@ module.exports.authenticate = (req, res, next) => {
         // Error if no user
         next(createError(404, { errors: { email: 'Email or password is incorrect' }}))
       } else {
-        return prof.checkPassword(password)
-          .then(match => {
-            if (!match) {
-              //Error if no password
-              next(createError(404, { errors: { email: 'Email or password is incorrect' }}))
-            } else {
-              // JWT generation - only id is passed
-              res.json({ 
-                access_token: jwt.sign(
-                  { id: prof._id },
-                  process.env.JWT_SECRET || 'changeme',
-                  {
-                    expiresIn: '1h'
-                  }
-                )
-               })
-            }
-          })
+        if(prof.active){
+          return prof.checkPassword(password)
+            .then(match => {
+              if (!match) {
+                //Error if no password
+                next(createError(404, { errors: { email: 'Email or password is incorrect' }}))
+              } else {
+                // JWT generation - only id is passed
+                res.json({ 
+                  access_token: jwt.sign(
+                    { id: prof._id },
+                    process.env.JWT_SECRET || 'changeme',
+                    {
+                      expiresIn: '1h'
+                    }
+                  )
+                 })
+              }
+            })
+        }
       }
     })
     .catch(error => next(error))
