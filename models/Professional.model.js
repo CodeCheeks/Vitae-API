@@ -40,7 +40,11 @@ const professionalSchema = mongoose.Schema(
     },
     admin: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    active: {
+      type: Boolean,
+      default: true,
     },
     reports: [{type: Schema.Types.ObjectId, ref: 'Report' }],
     organizedactivities: [{type: Schema.Types.ObjectId, ref: 'Activity' }],
