@@ -121,6 +121,9 @@ Professional.findById(req.params.id)
       path: 'sender',
       populate: {
         path: 'elder'
+      },
+      populate: {
+        path: 'professional'
       }
     }
 }
